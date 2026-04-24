@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="What are ultra-processed foods? The NOVA classification system explained, the health research, how to spot UPFs on a label, and practical swaps to make today." />
+  <meta property="og:title" content="What Are Ultra-Processed Foods and Why Should You Care?" />
+  <meta property="og:description" content="The NOVA classification system, what makes food ultra-processed, the alarming research, and practical swaps to make today." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://foodpeel.com/blog/ultra-processed-foods.html" />
+  <link rel="canonical" href="https://foodpeel.com/blog/ultra-processed-foods.html" />
+  <title>What Are Ultra-Processed Foods and Why Should You Care? | FoodPeel</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "What Are Ultra-Processed Foods and Why Should You Care?",
+    "datePublished": "2026-04-24",
+    "publisher": {"@type": "Organization", "name": "FoodPeel", "url": "https://foodpeel.com"},
+    "description": "The NOVA classification system, what makes food ultra-processed, health research links, and practical swaps."
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .article-hero { padding: 140px 0 48px; }
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .article-date { font-size: 14px; color: var(--text-muted); }
+    .article-readtime {
+      font-size: 13px;
+      color: var(--text-muted);
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-weight: 600;
+    }
+    .article-title {
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .article-lead {
+      font-size: 19px;
+      color: #9ca3af;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent-green);
+      padding-left: 20px;
+    }
+    .article-body h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 44px 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .article-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin: 28px 0 10px;
+    }
+    .article-body p {
+      font-size: 17px;
+      color: #9ca3af;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .article-body strong { color: var(--text-primary); font-weight: 700; }
+    .nova-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin: 24px 0 32px;
+    }
+    .nova-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 22px;
+    }
+    .nova-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+    .nova-1 { background: rgba(34,197,94,0.12); color: #22c55e; border: 1px solid rgba(34,197,94,0.3); }
+    .nova-2 { background: rgba(132,204,22,0.12); color: #84cc16; border: 1px solid rgba(132,204,22,0.3); }
+    .nova-3 { background: rgba(245,158,11,0.12); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
+    .nova-4 { background: rgba(239,68,68,0.12); color: #ef4444; border: 1px solid rgba(239,68,68,0.3); }
+    .nova-info {}
+    .nova-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .nova-desc {
+      font-size: 14px;
+      color: #6b7280;
+      line-height: 1.55;
+      margin: 0;
+    }
+    .nova-examples {
+      font-size: 13px;
+      color: #4b5563;
+      font-style: italic;
+      margin-top: 4px;
+    }
+    .stat-row {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--accent-green);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+    }
+    .stat-number {
+      font-size: 28px;
+      font-weight: 900;
+      color: var(--accent-green);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 15px;
+      color: #6b7280;
+      line-height: 1.4;
+    }
+    .red-flags-list {
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .red-flags-list li {
+      font-size: 16px;
+      color: #9ca3af;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      line-height: 1.5;
+    }
+    .red-flags-list li::before {
+      content: '🚩';
+      flex-shrink: 0;
+      font-size: 14px;
+      margin-top: 2px;
+    }
+    .swaps-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+    .swap-col-header {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border-radius: 8px;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .swap-col-bad { background: rgba(239,68,68,0.1); color: #ef4444; }
+    .swap-col-good { background: rgba(34,197,94,0.1); color: #22c55e; }
+    .swap-item {
+      font-size: 14px;
+      color: #9ca3af;
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      text-align: center;
+    }
+    .swap-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-green);
+      font-size: 18px;
+      grid-column: 1 / -1;
+      display: none;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.04));
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .cta-box h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .cta-box p {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent-green); }
+    .research-block {
+      background: rgba(34,197,94,0.04);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 20px 0;
+    }
+    .research-block p {
+      font-size: 15px;
+      color: #86efac;
+      margin: 0;
+      line-height: 1.65;
+    }
+    .research-source {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 8px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">
+          <span class="nav-logo-emoji">🥦</span>
+          <span class="nav-logo-text">Food<span>Peel</span></span>
+          <span class="nav-tagline">Peel back the label.</span>
+        </a>
+        <div class="nav-links">
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="index.html" class="nav-link" style="color: var(--accent-green);">Blog</a>
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../index.html#hero-form" class="nav-cta">Get Early Access →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== ARTICLE ===== -->
+  <div class="article-hero">
+    <div class="article-wrap">
+
+      <a href="index.html" class="back-link">← Back to Blog</a>
+
+      <span class="section-label">Food Science</span>
+
+      <h1 class="article-title">What Are Ultra-Processed Foods and Why Should You Care?</h1>
+
+      <div class="article-meta">
+        <span class="article-date">April 24, 2026</span>
+        <span class="article-readtime">5 min read</span>
+      </div>
+
+      <p class="article-lead">
+        More than 70% of the US food supply is ultra-processed. A growing body of research links UPF consumption to obesity, heart disease, cancer, depression, and early death. Here's what ultra-processed means, how to spot it, and what to do about it.
+      </p>
+
+      <div class="article-body">
+
+        <p>For most of food science history, researchers focused on individual nutrients: too much fat, too much sodium, not enough fiber. But something wasn't adding up. Diets that looked nutritionally similar had wildly different health outcomes. In 2009, a Brazilian epidemiologist named Carlos Monteiro proposed a new framework — and it changed everything.</p>
+
+        <h2>The NOVA Classification System</h2>
+
+        <p>NOVA (not an acronym — a reference to new thinking) classifies food not by nutrients but by the <strong>degree and purpose of processing</strong>. It has four groups:</p>
+
+        <div class="nova-grid">
+          <div class="nova-card">
+            <div class="nova-number nova-1">1</div>
+            <div class="nova-info">
+              <div class="nova-title">Unprocessed or Minimally Processed Foods</div>
+              <p class="nova-desc">Whole, natural foods with no or minimal alteration for preservation. Safe to eat as-is.</p>
+              <p class="nova-examples">Examples: fresh vegetables, fruits, eggs, meat, plain yogurt, dried beans, plain nuts, coffee, tea, water.</p>
+            </div>
+          </div>
+          <div class="nova-card">
+            <div class="nova-number nova-2">2</div>
+            <div class="nova-info">
+              <div class="nova-title">Processed Culinary Ingredients</div>
+              <p class="nova-desc">Substances extracted from food or nature and used in home cooking. Not meant to be eaten alone.</p>
+              <p class="nova-examples">Examples: olive oil, butter, flour, salt, sugar, honey, vinegar, cornstarch.</p>
+            </div>
+          </div>
+          <div class="nova-card">
+            <div class="nova-number nova-3">3</div>
+            <div class="nova-info">
+              <div class="nova-title">Processed Foods</div>
+              <p class="nova-desc">Made by combining NOVA 1 and NOVA 2 foods. Simple, recognizable recipes. Preserved for longer shelf life but still essentially whole food.</p>
+              <p class="nova-examples">Examples: canned tomatoes, smoked salmon, cheese, cured meats, freshly baked bread (bakery), jam.</p>
+            </div>
+          </div>
+          <div class="nova-card">
+            <div class="nova-number nova-4">4</div>
+            <div class="nova-info">
+              <div class="nova-title">Ultra-Processed Foods (UPFs)</div>
+              <p class="nova-desc">Industrial formulations made mostly from processed food substances — little or no whole food. Contain additives designed to enhance palatability, appearance, and shelf life. Cannot be replicated at home from real ingredients.</p>
+              <p class="nova-examples">Examples: packaged snacks, instant noodles, chicken nuggets, breakfast cereals, sodas, flavored yogurt, hot dogs, margarine, most fast food, protein bars.</p>
+            </div>
+          </div>
+        </div>
+
+        <p>The key distinction: <strong>you could not make a NOVA 4 food in your own kitchen.</strong> Try to make a Pringle. Or a Twinkie. Or a Fruit Loop. You can't, because they require industrial processes, artificial emulsifiers, colorants, and flavor compounds not available outside a factory.</p>
+
+        <h2>What Makes Food Ultra-Processed?</h2>
+
+        <p>Ultra-processed foods typically share several characteristics:</p>
+
+        <ul class="red-flags-list">
+          <li>Long ingredient lists (15+ ingredients, often 25-40)</li>
+          <li>Ingredients you wouldn't find in a home kitchen: emulsifiers, stabilizers, thickeners, gelling agents, humectants</li>
+          <li>Artificial flavors, colors, or sweeteners</li>
+          <li>Designed to be "hyper-palatable" — engineered combinations of salt, sugar, and fat that override natural fullness signals</li>
+          <li>Extremely long shelf life relative to their fresh equivalent</li>
+          <li>Uniform texture and appearance regardless of season or batch</li>
+          <li>Heavily packaged and marketed, often with health claims</li>
+        </ul>
+
+        <p>The last point is ironic but important: the more health claims on the package ("high protein," "low fat," "good source of fiber"), the more likely it's ultra-processed. Real food doesn't need to advertise its healthfulness. An apple doesn't have a label. A bag of apple-flavored cereal does.</p>
+
+        <h2>The Research: What Ultra-Processing Does to You</h2>
+
+        <p>The evidence against ultra-processed foods has been building rapidly. Here's a summary of what major studies have found:</p>
+
+        <div class="stat-row">
+          <div class="stat-card">
+            <div class="stat-number">+62%</div>
+            <div class="stat-label">Higher risk of type 2 diabetes for those in the highest UPF consumption quartile, per a 2023 British Medical Journal meta-analysis of 10 prospective studies covering 1.8 million people.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">+50%</div>
+            <div class="stat-label">Increased risk of anxiety and common mental disorders linked to high UPF consumption, per a 2023 BMJ study of 260,000 people across 10 countries.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">+29%</div>
+            <div class="stat-label">Higher risk of premature death from any cause for those consuming 4+ servings of ultra-processed food daily, per a 2019 JAMA Internal Medicine study.</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">+12%</div>
+            <div class="stat-label">Increase in overall cancer risk for every 10% increase in ultra-processed food proportion of diet, per a 2023 eClinicalMedicine study of 200,000 UK Biobank participants.</div>
+          </div>
+        </div>
+
+        <div class="research-block">
+          <p>In a landmark 2019 NIH clinical trial — the first randomized controlled trial specifically testing ultra-processed vs. unprocessed diets — participants eating ultra-processed food consumed <strong>500 more calories per day</strong> and gained an average of 2 pounds over 2 weeks. When switched to an unprocessed diet, they spontaneously ate less and lost weight — eating the same macronutrient ratios. The difference was processing, not nutrients.</p>
+          <span class="research-source">Hall et al., Cell Metabolism, 2019 — NIH Intramural Research Program</span>
+        </div>
+
+        <p>The mechanism appears to be multi-factorial: UPFs disrupt gut microbiome diversity, contain emulsifiers that damage the gut lining, are engineered to override satiety signals, and are nutritionally depleted in ways that leave you perpetually hungry despite high caloric intake.</p>
+
+        <h2>How to Spot Ultra-Processed Foods on a Label</h2>
+
+        <p>Apply this quick screen when reading any ingredient list:</p>
+
+        <ul class="red-flags-list">
+          <li>Contains ingredients ending in "-ose" that aren't recognizable food (other than glucose, fructose, sucrose)</li>
+          <li>Contains emulsifiers: soy lecithin, carrageenan, polysorbate 80, xanthan gum, guar gum, carboxymethylcellulose</li>
+          <li>Contains flavor enhancers: MSG, disodium inosinate, disodium guanylate, "artificial flavor," "natural flavor"</li>
+          <li>Contains color additives: Red 40, Yellow 5, Blue 1, Caramel Color (especially type IV)</li>
+          <li>Contains more than 5 ingredients where most aren't things you could buy separately at a store</li>
+          <li>The label makes multiple health claims — that's the tell</li>
+        </ul>
+
+        <h2>Practical Swaps to Make Today</h2>
+
+        <p>You don't have to overhaul your entire diet. Small substitutions compound over time:</p>
+
+        <div class="swaps-grid">
+          <div>
+            <div class="swap-col-header swap-col-bad">Instead of ✗</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div class="swap-item">Breakfast cereal</div>
+              <div class="swap-item">Flavored yogurt</div>
+              <div class="swap-item">Packaged chips</div>
+              <div class="swap-item">Fruit juice</div>
+              <div class="swap-item">Protein bar</div>
+              <div class="swap-item">Instant ramen</div>
+              <div class="swap-item">Deli meat slices</div>
+            </div>
+          </div>
+          <div>
+            <div class="swap-col-header swap-col-good">Try this ✓</div>
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div class="swap-item">Rolled oats + fruit</div>
+              <div class="swap-item">Plain yogurt + honey</div>
+              <div class="swap-item">Nuts or popcorn</div>
+              <div class="swap-item">Whole fruit</div>
+              <div class="swap-item">Hard-boiled eggs</div>
+              <div class="swap-item">Rice + beans + veg</div>
+              <div class="swap-item">Roasted chicken or tuna</div>
+            </div>
+          </div>
+        </div>
+
+        <p>The goal isn't perfection. Ultra-processed food is everywhere and sometimes unavoidable. The goal is <strong>awareness</strong> — knowing when you're eating it so you can make conscious choices, and reducing it at the margins where it's easy to swap.</p>
+
+        <p>That's exactly what FoodPeel is designed to give you: instant clarity about what category any food falls into, without the homework.</p>
+
+        <div class="cta-box">
+          <h2>Know before you eat.</h2>
+          <p>FoodPeel flags ultra-processed ingredients instantly when you scan any product. Stop guessing — get on the waitlist and be first when we launch.</p>
+          <a href="https://foodpeel.com#hero-form" class="btn-primary">Join the Waitlist → foodpeel.com</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © 2026 FoodPeel · Built with <span class="footer-heart">❤️</span> for families
+        </p>
+        <div class="footer-links">
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="mailto:hello@foodpeel.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

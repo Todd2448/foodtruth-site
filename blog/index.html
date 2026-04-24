@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="The FoodPeel Blog — Know what's really in your food. Articles on food safety, ingredient transparency, and eating cleaner." />
+  <meta property="og:title" content="The FoodPeel Blog — Know What's Really In Your Food" />
+  <meta property="og:description" content="Articles on food safety, banned ingredients, label reading, and ultra-processed foods." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://foodpeel.com/blog/" />
+  <link rel="canonical" href="https://foodpeel.com/blog/" />
+  <title>The FoodPeel Blog — Know What's Really In Your Food</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .blog-hero {
+      padding: 140px 0 60px;
+      text-align: center;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 28px;
+      margin-top: 48px;
+      padding-bottom: 100px;
+    }
+    .blog-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      text-decoration: none;
+      display: block;
+      transition: border-color 0.25s, transform 0.25s, background 0.25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent-green), var(--accent-green-light));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .blog-card:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+      transform: translateY(-4px);
+    }
+    .blog-card:hover::before {
+      opacity: 1;
+    }
+    .blog-card-meta {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .blog-card-date {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .blog-card-readtime {
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 500;
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: 100px;
+      padding: 2px 10px;
+    }
+    .blog-card-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+      line-height: 1.3;
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+    .blog-card-excerpt {
+      font-size: 15px;
+      color: #6b7280;
+      line-height: 1.65;
+      margin-bottom: 20px;
+    }
+    .blog-card-cta {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent-green);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .blog-card-emoji {
+      font-size: 36px;
+      margin-bottom: 18px;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">
+          <span class="nav-logo-emoji">🥦</span>
+          <span class="nav-logo-text">Food<span>Peel</span></span>
+          <span class="nav-tagline">Peel back the label.</span>
+        </a>
+        <div class="nav-links">
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="index.html" class="nav-link" style="color: var(--accent-green);">Blog</a>
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../index.html#hero-form" class="nav-cta">Get Early Access →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="blog-hero">
+    <div class="container">
+      <span class="section-label">The FoodPeel Blog</span>
+      <h1 class="section-title" style="font-size: clamp(32px, 5vw, 56px); max-width: 700px; margin: 0 auto 16px;">
+        Know What's Really<br /><span style="color: var(--accent-green);">In Your Food</span>
+      </h1>
+      <div class="divider center"></div>
+      <p class="section-sub" style="text-align: center; margin: 0 auto;">
+        No fluff. No sponsored content. Just real information about what's in your food, why it matters, and what you can do about it.
+      </p>
+    </div>
+  </section>
+
+  <!-- ===== BLOG GRID ===== -->
+  <section style="padding-top: 0;">
+    <div class="container">
+      <div class="blog-grid">
+
+        <a href="banned-ingredients.html" class="blog-card">
+          <span class="blog-card-emoji">🚫</span>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">April 24, 2026</span>
+            <span class="blog-card-readtime">6 min read</span>
+          </div>
+          <div class="blog-card-title">12 Ingredients Banned in Europe That Are Still in American Food</div>
+          <p class="blog-card-excerpt">Red 40, BHA/BHT, Potassium Bromate — these additives are outlawed in most of the developed world but still sitting in your cereal bowl. Here's what you need to know.</p>
+          <span class="blog-card-cta">Read article →</span>
+        </a>
+
+        <a href="how-to-read-food-labels.html" class="blog-card">
+          <span class="blog-card-emoji">🔍</span>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">April 24, 2026</span>
+            <span class="blog-card-readtime">5 min read</span>
+          </div>
+          <div class="blog-card-title">How to Read a Food Label in 60 Seconds (Without a Chemistry Degree)</div>
+          <p class="blog-card-excerpt">The serving size trap, the ingredient order rule, what "natural flavors" actually means, and 56 ways sugar hides on a label. Your no-BS guide to decoding any package.</p>
+          <span class="blog-card-cta">Read article →</span>
+        </a>
+
+        <a href="ultra-processed-foods.html" class="blog-card">
+          <span class="blog-card-emoji">🏭</span>
+          <div class="blog-card-meta">
+            <span class="blog-card-date">April 24, 2026</span>
+            <span class="blog-card-readtime">5 min read</span>
+          </div>
+          <div class="blog-card-title">What Are Ultra-Processed Foods and Why Should You Care?</div>
+          <p class="blog-card-excerpt">The NOVA classification changed how scientists think about food. More than 70% of the US food supply is ultra-processed — and the research on what that does to your body is alarming.</p>
+          <span class="blog-card-cta">Read article →</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © 2026 FoodPeel · Built with <span class="footer-heart">❤️</span> for families
+        </p>
+        <div class="footer-links">
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="mailto:hello@foodpeel.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

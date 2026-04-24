@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="How to read a food label in 60 seconds — the serving size trap, ingredient order rule, 56 names for sugar, and red flag preservatives to watch for. No chemistry degree required." />
+  <meta property="og:title" content="How to Read a Food Label in 60 Seconds (Without a Chemistry Degree)" />
+  <meta property="og:description" content="The serving size trap, ingredient order rule, what 'natural flavors' really means, and 56 names for sugar — your no-BS guide to food labels." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://foodpeel.com/blog/how-to-read-food-labels.html" />
+  <link rel="canonical" href="https://foodpeel.com/blog/how-to-read-food-labels.html" />
+  <title>How to Read a Food Label in 60 Seconds (Without a Chemistry Degree) | FoodPeel</title>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "How to Read a Food Label in 60 Seconds (Without a Chemistry Degree)",
+    "datePublished": "2026-04-24",
+    "publisher": {"@type": "Organization", "name": "FoodPeel", "url": "https://foodpeel.com"},
+    "description": "A practical guide to decoding food labels — serving sizes, ingredient order, hidden sugars, and red flag additives."
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <style>
+    .article-hero { padding: 140px 0 48px; }
+    .article-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px 100px;
+    }
+    .article-meta {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 32px;
+      flex-wrap: wrap;
+    }
+    .article-date { font-size: 14px; color: var(--text-muted); }
+    .article-readtime {
+      font-size: 13px;
+      color: var(--text-muted);
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: 100px;
+      padding: 3px 12px;
+      font-weight: 600;
+    }
+    .article-title {
+      font-size: clamp(28px, 4.5vw, 48px);
+      font-weight: 900;
+      line-height: 1.12;
+      letter-spacing: -0.03em;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .article-lead {
+      font-size: 19px;
+      color: #9ca3af;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      border-left: 3px solid var(--accent-green);
+      padding-left: 20px;
+    }
+    .article-body h2 {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin: 44px 0 14px;
+      letter-spacing: -0.01em;
+    }
+    .article-body h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent-green);
+      margin: 28px 0 10px;
+    }
+    .article-body p {
+      font-size: 17px;
+      color: #9ca3af;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .article-body strong { color: var(--text-primary); font-weight: 700; }
+    .tip-box {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .tip-box-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-green);
+      margin-bottom: 8px;
+    }
+    .tip-box p {
+      font-size: 16px;
+      color: #86efac;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .warning-box {
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      margin: 24px 0;
+    }
+    .warning-box-label {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #ef4444;
+      margin-bottom: 8px;
+    }
+    .warning-box p {
+      font-size: 16px;
+      color: #fca5a5;
+      margin: 0;
+      line-height: 1.6;
+    }
+    .sugar-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+      margin: 16px 0 24px;
+    }
+    .sugar-tag {
+      background: rgba(245,158,11,0.08);
+      border: 1px solid rgba(245,158,11,0.2);
+      border-radius: 8px;
+      padding: 7px 12px;
+      font-size: 13px;
+      color: #f59e0b;
+      font-weight: 500;
+    }
+    .preservatives-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 16px 0 24px;
+    }
+    .preservative-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid #ef4444;
+      border-radius: var(--radius);
+      padding: 14px 18px;
+    }
+    .preservative-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .preservative-note {
+      font-size: 14px;
+      color: #6b7280;
+    }
+    .cta-box {
+      background: linear-gradient(135deg, rgba(34,197,94,0.08), rgba(34,197,94,0.04));
+      border: 1px solid rgba(34,197,94,0.25);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      text-align: center;
+      margin-top: 60px;
+    }
+    .cta-box h2 {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 12px;
+    }
+    .cta-box p {
+      font-size: 16px;
+      color: #6b7280;
+      margin-bottom: 24px;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      margin-bottom: 32px;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: var(--accent-green); }
+    .step-number-inline {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: rgba(34,197,94,0.12);
+      border: 1.5px solid rgba(34,197,94,0.3);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent-green);
+      margin-right: 8px;
+      flex-shrink: 0;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="../index.html" class="nav-logo">
+          <span class="nav-logo-emoji">🥦</span>
+          <span class="nav-logo-text">Food<span>Peel</span></span>
+          <span class="nav-tagline">Peel back the label.</span>
+        </a>
+        <div class="nav-links">
+          <a href="../pricing.html" class="nav-link">Pricing</a>
+          <a href="index.html" class="nav-link" style="color: var(--accent-green);">Blog</a>
+          <a href="../about.html" class="nav-link">About</a>
+          <a href="../index.html#hero-form" class="nav-cta">Get Early Access →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== ARTICLE ===== -->
+  <div class="article-hero">
+    <div class="article-wrap">
+
+      <a href="index.html" class="back-link">← Back to Blog</a>
+
+      <span class="section-label">Label Reading</span>
+
+      <h1 class="article-title">How to Read a Food Label in 60 Seconds (Without a Chemistry Degree)</h1>
+
+      <div class="article-meta">
+        <span class="article-date">April 24, 2026</span>
+        <span class="article-readtime">5 min read</span>
+      </div>
+
+      <p class="article-lead">
+        The food label is one of the most information-dense — and deliberately confusing — things in your daily life. Here's a practical system for cutting through the noise in under a minute, every time.
+      </p>
+
+      <div class="article-body">
+
+        <p>Food companies spend millions making their labels look nutritious while burying the sketchy stuff. But once you know the tricks, it takes about 60 seconds to separate the clean from the problematic. Here's exactly how.</p>
+
+        <h2>Step 1: The Serving Size Trap (10 seconds)</h2>
+
+        <p>Before you look at anything else — before calories, before carbs, before anything — look at the serving size. This is where food manufacturers do the most damage.</p>
+
+        <p>A bag of Doritos lists 1 ounce (about 11 chips) as a serving. A bottle of Snapple is "2 servings." A small bag of gummy bears might be "2.5 servings." When you eat the whole thing — which is the point of selling you a single-serve package — you're multiplying every number on that label.</p>
+
+        <div class="warning-box">
+          <div class="warning-box-label">⚠️ Watch for this</div>
+          <p>A "healthy" granola at 150 calories per serving becomes 450 calories when you realize the bag contains 3 servings and you just ate the whole thing. Always check serving size before trusting any number on the label.</p>
+        </div>
+
+        <p><strong>The rule:</strong> Mentally multiply every number by how much you'll actually eat. That's the real nutrition info.</p>
+
+        <h2>Step 2: The Ingredient Order Rule (10 seconds)</h2>
+
+        <p>Ingredients are listed in <strong>descending order by weight</strong>. Whatever appears first is present in the largest amount. Whatever appears last is present in trace amounts.</p>
+
+        <p>This means: if sugar is the first or second ingredient, the product is mostly sugar. If "whole wheat flour" is listed first on bread but "enriched bleached flour" appears second, most of what you're eating is the refined stuff. The "whole wheat" is marketing; the label tells the truth.</p>
+
+        <div class="tip-box">
+          <div class="tip-box-label">✅ Quick rule</div>
+          <p>If you can't identify the first 3 ingredients as real food, the product probably isn't. Aim for products where the first 3-5 ingredients are things a person could buy at a grocery store on their own.</p>
+        </div>
+
+        <p>Also useful: <strong>count the ingredients.</strong> Products with fewer than 8-10 ingredients are generally less processed. Products with 25+ ingredients — especially with multiple names you don't recognize — are almost always ultra-processed.</p>
+
+        <h2>Step 3: What "Natural Flavors" Actually Means (10 seconds)</h2>
+
+        <p>"Natural flavors" is one of the most misleading phrases in the food industry. It sounds wholesome. It isn't.</p>
+
+        <p>The FDA defines "natural flavors" as any flavoring derived from a natural source — including animal products, fungi, vegetables, fruit, herbs, and seafood. But the definition allows for extensive processing, chemical modification, and the addition of solvents and preservatives.</p>
+
+        <p>"Natural strawberry flavor" in your yogurt may contain up to <strong>50 different chemicals</strong> derived from actual strawberries — or it may be derived from a wood pulp compound called castoreum (yes, really). You won't know, because companies aren't required to disclose what's in their natural flavors — only that they contain them.</p>
+
+        <p>The problem isn't that natural flavors will kill you. It's that they allow companies to use cheap, processed ingredients while implying real food is present. <strong>Real vanilla says "vanilla."</strong> Real strawberry says "strawberries." "Natural strawberry flavor" means something was processed to approximate the taste of a strawberry.</p>
+
+        <h2>Step 4: The 56 Names for Sugar (15 seconds)</h2>
+
+        <p>Sugar appears on ingredient lists under <strong>at least 56 different names</strong>. This is a legal way to hide how much sugar is in a product — by splitting it across multiple names so none of them appear near the top of the list.</p>
+
+        <p>Here are the most common aliases to watch for:</p>
+
+        <div class="sugar-grid">
+          <span class="sugar-tag">High fructose corn syrup</span>
+          <span class="sugar-tag">Corn syrup</span>
+          <span class="sugar-tag">Corn syrup solids</span>
+          <span class="sugar-tag">Dextrose</span>
+          <span class="sugar-tag">Maltose</span>
+          <span class="sugar-tag">Fructose</span>
+          <span class="sugar-tag">Glucose</span>
+          <span class="sugar-tag">Sucrose</span>
+          <span class="sugar-tag">Galactose</span>
+          <span class="sugar-tag">Invert sugar</span>
+          <span class="sugar-tag">Turbinado sugar</span>
+          <span class="sugar-tag">Cane juice</span>
+          <span class="sugar-tag">Evaporated cane juice</span>
+          <span class="sugar-tag">Cane syrup</span>
+          <span class="sugar-tag">Agave nectar</span>
+          <span class="sugar-tag">Agave syrup</span>
+          <span class="sugar-tag">Barley malt</span>
+          <span class="sugar-tag">Brown rice syrup</span>
+          <span class="sugar-tag">Coconut sugar</span>
+          <span class="sugar-tag">Coconut palm sugar</span>
+          <span class="sugar-tag">Date sugar</span>
+          <span class="sugar-tag">Maple syrup</span>
+          <span class="sugar-tag">Molasses</span>
+          <span class="sugar-tag">Honey</span>
+          <span class="sugar-tag">Fruit juice concentrate</span>
+          <span class="sugar-tag">Malt syrup</span>
+          <span class="sugar-tag">Rice bran syrup</span>
+          <span class="sugar-tag">Sorghum syrup</span>
+          <span class="sugar-tag">Treacle</span>
+          <span class="sugar-tag">Beet sugar</span>
+          <span class="sugar-tag">Caramel</span>
+          <span class="sugar-tag">Dextran</span>
+          <span class="sugar-tag">Maltodextrin</span>
+        </div>
+
+        <p>The total sugar count (in grams) on the Nutrition Facts panel is more reliable than the ingredient list for tracking total intake. But looking for multiple sugar names clustered in the ingredient list is still a useful red flag for hyper-sweetened products.</p>
+
+        <h2>Step 5: Red Flag Preservatives to Memorize (15 seconds)</h2>
+
+        <p>Most preservatives are harmless. These aren't:</p>
+
+        <div class="preservatives-list">
+          <div class="preservative-item">
+            <div class="preservative-name">BHA / BHT</div>
+            <div class="preservative-note">Synthetic antioxidants. BHA is a possible carcinogen per IARC. Banned in Europe. Found in cereals, chips, gum.</div>
+          </div>
+          <div class="preservative-item">
+            <div class="preservative-name">Sodium Nitrite / Sodium Nitrate</div>
+            <div class="preservative-note">Used in cured meats. Can form nitrosamines (carcinogens) when cooked at high heat. Linked to colorectal cancer in multiple studies.</div>
+          </div>
+          <div class="preservative-item">
+            <div class="preservative-name">Sodium Benzoate</div>
+            <div class="preservative-note">When combined with ascorbic acid (Vitamin C), forms benzene — a known carcinogen. Common in sodas and fruit juices.</div>
+          </div>
+          <div class="preservative-item">
+            <div class="preservative-name">TBHQ (Tert-Butylhydroquinone)</div>
+            <div class="preservative-note">A petroleum-derived preservative linked to immune system disruption and potential carcinogenicity at high doses. Found in fast food frying oils and crackers.</div>
+          </div>
+          <div class="preservative-item">
+            <div class="preservative-name">Potassium Bromate</div>
+            <div class="preservative-note">Flour improver banned in Europe, Canada, and most countries. Classified as possible carcinogen. Still legal in most US states.</div>
+          </div>
+          <div class="preservative-item">
+            <div class="preservative-name">Carrageenan</div>
+            <div class="preservative-note">Thickener from red seaweed. Linked to intestinal inflammation. Banned in EU infant formula. Found in dairy, dairy alternatives, deli meats.</div>
+          </div>
+        </div>
+
+        <h2>The 60-Second System in Order</h2>
+
+        <p><span class="step-number-inline">1</span> <strong>Check the serving size.</strong> Will you actually eat one serving?</p>
+        <p><span class="step-number-inline">2</span> <strong>Read the first 3 ingredients.</strong> Are they real food you recognize?</p>
+        <p><span class="step-number-inline">3</span> <strong>Count the ingredients.</strong> Under 10? Usually fine. Over 20? Proceed with caution.</p>
+        <p><span class="step-number-inline">4</span> <strong>Look for sugar aliases.</strong> How many different forms of sugar appear?</p>
+        <p><span class="step-number-inline">5</span> <strong>Scan for red flag preservatives.</strong> BHA, BHT, sodium nitrite, TBHQ, carrageenan.</p>
+
+        <p>It takes practice the first few times. After a month, you'll do it automatically and it'll take about 30 seconds. Your cart will look different. Your body will notice.</p>
+
+        <div class="cta-box">
+          <h2>Too much to memorize?</h2>
+          <p>FoodPeel does all of this automatically — scan the barcode, get an instant plain-English rating. No memorizing ingredient lists required. Join the waitlist and be first when we launch.</p>
+          <a href="https://foodpeel.com#hero-form" class="btn-primary">Join the Waitlist → foodpeel.com</a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">
+          © 2026 FoodPeel · Built with <span class="footer-heart">❤️</span> for families
+        </p>
+        <div class="footer-links">
+          <a href="../privacy.html">Privacy</a>
+          <a href="../terms.html">Terms</a>
+          <a href="mailto:hello@foodpeel.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
