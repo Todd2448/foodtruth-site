@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="FoodPeel Ingredient Lookup — Search any food additive or ingredient and instantly learn if it's safe, what it's banned from, and what to do about it. No chemistry degree required." />
   <meta property="og:title" content="FoodPeel Ingredient Lookup — Is That Ingredient Safe?" />
-  <meta property="og:description" content="Search 30+ common food additives and get instant safety ratings, banned country info, and plain-English descriptions." />
+  <meta property="og:description" content="Search 75+ common food additives and get instant safety ratings, banned country info, and plain-English descriptions." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://foodpeel.com/ingredient-lookup.html" />
   <meta property="og:image" content="https://foodpeel.com/images/og-image.png" />
@@ -280,9 +280,19 @@
           spellcheck="false"
         />
       </div>
-      <p class="lookup-hint">50+ ingredients in the database · More added regularly</p>
+      <p class="lookup-hint"><span style="background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.25); border-radius: 100px; padding: 3px 12px; font-size: 13px; font-weight: 700; color: var(--accent-green);">Database: 75 ingredients and growing</span></p>
     </div>
   </section>
+
+  <!-- ===== FEATURED INGREDIENTS ===== -->
+  <div class="container" style="padding-top: 0; padding-bottom: 0;">
+    <div style="max-width: 800px; margin: 0 auto;">
+      <div style="font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #6b7280; margin-bottom: 16px;">Most Searched</div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-bottom: 48px;" id="featured-ingredients">
+        <!-- Populated by JS -->
+      </div>
+    </div>
+  </div>
 
   <!-- ===== RESULTS ===== -->
   <div class="container" style="padding-bottom: 80px;">
@@ -291,9 +301,14 @@
       <div class="no-results-emoji">🤔</div>
       <h3>We don't have that one yet</h3>
       <p>Our database grows regularly. For the full picture, FoodPeel (the app) covers thousands of ingredients. <a href="early-access.html" style="color: var(--accent-green);">Get early access →</a></p>
+      <p style="margin-top: 12px;"><a href="mailto:hello@foodpeel.com?subject=Ingredient+Suggestion" style="color: var(--accent-green); font-weight: 600;">✉️ Suggest this ingredient →</a></p>
     </div>
 
     <hr class="section-divider" />
+
+    <div style="text-align: center; margin-bottom: 32px;">
+      <a href="mailto:hello@foodpeel.com?subject=Ingredient+Suggestion" style="color: #6b7280; font-size: 14px; text-decoration: none;">🔍 Don't see what you're looking for? <span style="color: var(--accent-green); font-weight: 600;">Suggest an ingredient →</span></a>
+    </div>
 
     <div class="all-ingredients-section">
       <div class="all-ing-title">Browse All Ingredients (click any to look up)</div>
@@ -326,6 +341,7 @@
           <a href="faq.html">FAQ</a>
           <a href="press.html">Press</a>
           <a href="newsletter.html">Newsletter</a>
+          <a href="app.html">Get the App</a>
           <a href="mailto:hello@foodpeel.com">Contact</a>
         </div>
       </div>
@@ -733,6 +749,158 @@
       banned_in: ["EU (restricted/banned in food)", "Japan (banned in food)"],
       description: "Parabens are preservatives used in some processed foods, beverages, and condiments. They're much more common in cosmetics, but food use exists. Parabens mimic estrogen in the body and are classified as endocrine disruptors. They've been found in human breast tissue. The EU has banned several parabens from food and severely restricted others. The FDA hasn't taken similar action for food, though the EU and California have driven significant voluntary reformulation in cosmetics. Evidence links paraben exposure to breast cancer, reproductive toxicity, and developmental effects.",
       what_to_do: "Parabens in food are less common than in cosmetics, but check packaged baked goods, condiments, and beverages. The bigger exposure is through personal care products. Look for products labeled 'paraben-free.'"
+    },
+    "bpa": {
+      name: "BPA (Bisphenol A)",
+      aliases: ["bisphenol a", "bisphenol-a", "polycarbonate", "epoxy resin"],
+      rating: "red",
+      banned_in: ["EU (banning from food contact materials)", "France (banned all food packaging 2015)", "EU (banned from baby bottles 2011)"],
+      description: "BPA is a synthetic chemical used to harden polycarbonate plastics and manufacture the epoxy resin linings inside metal food cans. It's an endocrine disruptor that mimics estrogen — binding to estrogen receptors and triggering hormonal responses. BPA migrates into food from can linings, plastic containers (especially when heated), and polycarbonate bottles. It's been linked to fertility problems, developmental effects in children, insulin resistance, obesity, and increased cancer risk. The FDA banned it from baby bottles in 2012, but it remains legal in food packaging for adults. 'BPA-free' products often use BPS or BPF, which appear to have similar hormonal effects.",
+      what_to_do: "Avoid heating food in plastic containers. Replace polycarbonate (#7) plastic with glass or stainless steel. Reduce canned food consumption or look for brands using BPA-free linings (Eden Organics, Jovial). Don't put plastic in the dishwasher. Decline paper receipts — thermal paper contains extremely high BPA levels that absorb through skin."
+    },
+    "pfas": {
+      name: "PFAS (Per- and Polyfluoroalkyl Substances)",
+      aliases: ["perfluoroalkyl", "polyfluoroalkyl", "pfoa", "pfos", "teflon", "forever chemicals", "fluorinated"],
+      rating: "red",
+      banned_in: ["EU (banning all PFAS in food contact materials)", "Denmark (food packaging ban 2020)", "EU (PFOA banned 2020)"],
+      description: "PFAS are a class of 12,000+ synthetic chemicals defined by extremely strong carbon-fluorine bonds — so strong they don't break down in the environment or in your body. They're used in non-stick cookware coatings, grease-resistant food packaging (fast food wrappers, microwave popcorn bags), and food processing equipment. PFAS accumulate in your body over decades. Health effects documented in population studies include kidney and testicular cancer, elevated cholesterol, thyroid disease, immune suppression (including reduced vaccine effectiveness in children), reduced fertility, and developmental effects. PFAS have been detected in 98% of Americans' blood. The EPA set maximum contaminant limits for PFOA/PFOS in drinking water at 4 ppt in 2024.",
+      what_to_do: "Replace non-stick cookware with cast iron, stainless steel, or carbon steel. Avoid microwaving in plastic or eating directly from fast food packaging. Test your tap water if you live near military bases, airports, or industrial sites. Use a reverse osmosis or NSF-certified carbon filter for drinking water. Reduce microwave popcorn consumption. These are environmental contaminants, not label ingredients — but packaging choice matters."
+    },
+    "methylcellulose": {
+      name: "Methylcellulose",
+      aliases: ["e461", "methyl cellulose", "mc"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Methylcellulose is a chemically modified cellulose used as a thickener, emulsifier, and bulking agent. It has the unusual property of gelling when heated and dissolving when cooled — the opposite of most gels. It's used in processed sauces, baked goods, some plant-based meat alternatives (including Beyond Burger), and diet foods as a fat replacer. It's indigestible — passes through the gut intact — and at high doses can cause bloating and diarrhea. It's approved worldwide and has no known toxicity concerns at food use levels, but its presence signals a heavily processed product. Its use in plant-based meat products is widespread.",
+      what_to_do: "Low-priority concern at typical food levels. Its presence is primarily a signal of heavy processing. If you have IBS or digestive sensitivity, large amounts of non-digestible thickeners may aggravate symptoms. Check plant-based meat products especially."
+    },
+    "polydextrose": {
+      name: "Polydextrose",
+      aliases: ["e1200", "poly-dextrose"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Polydextrose is a synthetic polymer made from glucose, sorbitol, and citric acid. It's used as a bulking agent and sugar replacer in low-calorie and 'diet' foods, adding texture and bulk without the calories. It's a soluble fiber that passes mostly undigested and can feed gut bacteria — similar to other prebiotic fibers. At high doses (above 50g), it causes bloating, gas, and diarrhea. The FDA considers it safe and requires labeling as a dietary fiber. Its presence signals a low-calorie or 'light' engineered product.",
+      what_to_do: "Generally safe at food use levels but can cause digestive upset at high doses. Check sugar-free candies, diet bars, and low-calorie desserts. If you're sensitive to fiber fermentation (IBS, SIBO), high-polydextrose products may cause symptoms."
+    },
+    "enriched flour": {
+      name: "Enriched Flour",
+      aliases: ["enriched wheat flour", "enriched white flour", "fortified flour"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Enriched flour is white flour that has been stripped of its natural fiber, vitamins, and minerals through processing, then had a few synthetic vitamins added back (typically niacin, iron, thiamine, riboflavin, folic acid). The 'enrichment' replaces approximately 5 of the 30+ nutrients removed during milling — a poor nutritional trade. Enriched flour has a much higher glycemic index than whole grain flour, produces rapid blood sugar spikes, and lacks the fiber that slows digestion. Despite the fortification, enriched flour products are nutritionally inferior to their whole-grain equivalents. Its presence marks a product as nutritionally compromised.",
+      what_to_do: "Prefer products made with whole grain, whole wheat, or alternative flours (oat, almond, cassava). Enriched flour appearing as the first ingredient means the product's primary component is a nutritionally stripped grain. Not acutely toxic, but chronic high consumption contributes to insulin resistance and nutrient deficiency."
+    },
+    "bleached flour": {
+      name: "Bleached Flour",
+      aliases: ["bleached wheat flour", "chemically bleached flour", "chlorinated flour"],
+      rating: "yellow",
+      banned_in: ["EU", "UK", "Australia", "New Zealand"],
+      description: "Bleached flour is white flour treated with chemical agents to accelerate whitening and aging — processes that naturally take months are compressed into days. Common bleaching agents include benzoyl peroxide, chlorine dioxide, calcium peroxide, and azodicarbonamide. These chemicals alter the structure of the flour proteins and leave residues. Several bleaching agents are banned in the EU and other countries because of concerns about residue safety and the fact that the process is considered unnecessary. The US continues to permit bleached flour; most major commercial bakeries use it for texture and cost reasons.",
+      what_to_do: "Look for 'unbleached' flour or whole grain flour on ingredient lists. Major brands make both bleached and unbleached versions — the unbleached is typically just slightly more expensive. Bleached flour appearing in children's foods is a particular reason to look for alternatives."
+    },
+    "azodicarbonamide": {
+      name: "Azodicarbonamide (ADA)",
+      aliases: ["azo", "e927a", "ada", "flour bleaching agent"],
+      rating: "red",
+      banned_in: ["EU", "UK", "Australia", "Singapore (with fines up to $450,000)"],
+      description: "Azodicarbonamide is a dough conditioner and flour bleaching agent used in commercial bread to improve texture and elasticity. It's also used in manufacturing foam plastics (yoga mats, shoe soles) — which earned it the 'yoga mat chemical' nickname after a 2014 Subway campaign removed it due to consumer pressure. ADA itself breaks down during baking into semicarbazide and urethane — both of which are carcinogenic in animal studies. The FDA considers it safe at low levels; the EU, UK, and Singapore banned it years ago. Several major fast food chains have voluntarily removed it from their bread.",
+      what_to_do: "Avoid when possible. Check bread products, fast food buns, and commercial baked goods. Look for ingredient lists that don't include 'azodicarbonamide' or 'ADA.' Many brands have removed it due to consumer pressure — it's avoidable with minimal shopping adjustment."
+    },
+    "datem": {
+      name: "DATEM (Diacetyl Tartaric Acid Esters of Mono- and Diglycerides)",
+      aliases: ["diacetyl tartaric acid esters", "e472e"],
+      rating: "yellow",
+      banned_in: [],
+      description: "DATEM is an emulsifier used in bread, baked goods, and coffee creamers to improve dough strength and shelf life. Like mono- and diglycerides, DATEM can contain residual trans fats because it's derived from mono- and diglycerides — allowing products to contain trans fats without disclosing them on the nutrition label trans fat line. The FDA doesn't classify DATEM as a trans fat source because of regulatory nuance around how these fats are categorized. Research is limited, but the trans fat loophole is a real concern. Its presence signals a heavily processed product.",
+      what_to_do: "Check bread and baked goods ingredient lists. DATEM's primary concern is the hidden trans fat issue. If you're minimizing trans fat intake (which you should be), be aware that products listing DATEM may contain more trans fats than the label's 0g claim suggests."
+    },
+    "ssl": {
+      name: "SSL (Sodium Stearoyl Lactylate)",
+      aliases: ["sodium stearoyl lactylate", "sodium stearoyl-2-lactylate", "e481"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Sodium Stearoyl Lactylate (SSL) is an emulsifier used in bread, baked goods, whipped toppings, and coffee creamers to improve dough strength, texture, and shelf life. It's derived from stearic acid (a saturated fat) and lactic acid. SSL is generally considered one of the safer emulsifiers — it has a better safety profile than CMC or polysorbate 80, and it's approved in nearly every country. Some concerns exist about its effects on gut bacteria at high doses, but human data is limited. Its presence primarily signals a highly processed product rather than a specific health hazard.",
+      what_to_do: "Lower concern among the emulsifier class. Not a reason to avoid a product on its own. Check bread, pastries, and frozen baked goods. If you're limiting emulsifiers for gut health reasons, it's worth noting but not prioritizing over CMC or polysorbate 80."
+    },
+    "sodium acid pyrophosphate": {
+      name: "Sodium Acid Pyrophosphate (SAPP)",
+      aliases: ["sapp", "e450", "disodium dihydrogen pyrophosphate", "sodium pyrophosphate"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Sodium acid pyrophosphate is a leavening acid used in baking powder, pancake mixes, self-rising flour, biscuits, and some meats (to retain moisture and color in hot dogs and canned meats). It's also used to prevent discoloration in frozen hash browns and par-fried potatoes. As a phosphate, SAPP contributes to overall dietary phosphate load — which at high levels is associated with cardiovascular calcification, accelerated aging, and kidney stress. People with kidney disease should monitor phosphate intake carefully, as inorganic phosphates from food additives are absorbed at higher rates than natural organic phosphates.",
+      what_to_do: "Low individual concern but contributes to total phosphate load. Check baking mixes, frozen breakfast products, and processed meats. For kidney disease patients, this is one of multiple phosphate additives to monitor across your diet."
+    },
+    "vanillin": {
+      name: "Vanillin (Synthetic Vanilla)",
+      aliases: ["artificial vanilla", "imitation vanilla", "synthetic vanillin", "methyl vanillin"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Vanillin is the primary flavor compound in real vanilla — but the synthetic version is manufactured industrially, usually from guaiacol (derived from petroleum) or lignin (a wood byproduct). It's 20-100x cheaper than real vanilla extract and used in the vast majority of commercially vanilla-flavored products. Vanillin itself doesn't have significant safety concerns at food use levels — it's been consumed for decades without documented harm. The issue is more about transparency: it's often labeled just as 'artificial flavor' or 'imitation vanilla' without specifying the source. Some animal studies showed high-dose liver effects, but these aren't relevant to food exposure levels.",
+      what_to_do: "No significant health concern at food use levels. The main reason to prefer real vanilla extract over vanillin is taste quality and transparency, not safety. In baked goods where you'd use vanilla, real vanilla extract is worth the premium. Products using 'natural vanilla flavor' may use vanillin derived from wood pulp — still synthetic-like in cost and character."
+    },
+    "ethyl vanillin": {
+      name: "Ethyl Vanillin",
+      aliases: ["ethylvanillin", "3-ethoxy-4-hydroxybenzaldehyde"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Ethyl vanillin is a synthetic flavor compound similar to vanillin but 3-4 times stronger. It's made entirely in a lab (unlike vanillin, which has some natural occurrence in vanilla) and used in chocolate, baked goods, and candy. It's approved by the FDA and considered safe at current use levels. Animal studies at high doses showed thyroid and liver effects, but these doses were far above typical food exposure. The main concern is the same as vanillin: it's a synthetic stand-in for real flavor that obscures product quality. Products using ethyl vanillin are cutting corners on real ingredients.",
+      what_to_do: "No high-priority safety concern at food use levels. Its presence indicates synthetic flavoring over real ingredients. Check chocolate products especially — quality chocolate uses real vanilla; cheap chocolate uses ethyl vanillin."
+    },
+    "annatto expanded": {
+      name: "Annatto Extract",
+      aliases: ["annatto", "bixin", "norbixin", "e160b", "annatto extract"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Annatto is a natural food dye derived from the seeds of the achiote tree, used to give an orange-yellow color to cheese, butter, popcorn, cereals, and many processed foods. Often marketed as a 'natural' alternative to synthetic dyes — and while it is natural, it's also one of the more common triggers of food intolerance reactions. Unlike synthetic dyes (Red 40, Yellow 5), annatto doesn't carry cancer or hyperactivity concerns, but sensitivity reactions including hives, rash, IBS-like symptoms, and in rare cases anaphylaxis are well-documented. The reaction mechanism is different from synthetic dye reactions — people who react to one don't necessarily react to the other.",
+      what_to_do: "Generally a safer choice than synthetic dyes, but not consequence-free for sensitive individuals. Check bright orange/yellow cheeses, popcorn, cereals, and butter spreads. If you have unexplained skin reactions or digestive issues and consume these regularly, annatto sensitivity is worth investigating."
+    },
+    "turmeric dye": {
+      name: "Turmeric (as Food Coloring)",
+      aliases: ["turmeric extract", "curcumin", "e100", "ci 75300"],
+      rating: "green",
+      banned_in: [],
+      description: "Turmeric is a spice from the Curcuma longa plant used both as a culinary spice and as a yellow-orange food coloring. As a coloring, it's one of the safest options — it has anti-inflammatory properties, is a potent antioxidant, and has been consumed safely for thousands of years. The active compound, curcumin, is extensively studied for potential health benefits. At food coloring levels, the doses are lower than what's used in supplements, but the safety profile is very positive regardless of dose. It's a natural colorant with no documented toxicity concerns at any realistic dietary dose.",
+      what_to_do: "Green light — actually one of the few food colorings that may be beneficial rather than harmful. No action needed. If you see it on a label instead of synthetic dyes, that's a positive sign about the manufacturer's ingredient standards."
+    },
+    "beta carotene": {
+      name: "Beta-Carotene",
+      aliases: ["beta carotene", "\u03b2-carotene", "e160a", "provitamin a"],
+      rating: "green",
+      banned_in: [],
+      description: "Beta-carotene is a natural orange pigment found in carrots, sweet potatoes, and other orange-yellow vegetables. As a food additive, it's used as a coloring agent and vitamin A precursor. Your body converts it to vitamin A as needed — the conversion rate adjusts to prevent vitamin A toxicity, making food-source beta-carotene much safer than preformed vitamin A supplements. As a food coloring, it's derived either from natural plant sources or through fermentation, and is one of the safest colorants available. High doses from food are associated with harmless orange-yellow skin coloration (carotenemia), which is reversible.",
+      what_to_do: "Green light. One of the safest food colorants. Seeing it on a label instead of synthetic dyes is a positive signal. No concern at food use levels."
+    },
+    "lycopene": {
+      name: "Lycopene",
+      aliases: ["e160d", "tomato lycopene"],
+      rating: "green",
+      banned_in: [],
+      description: "Lycopene is a natural red-pink carotenoid pigment found primarily in tomatoes, watermelon, and pink grapefruit. As a food coloring, it provides red-pink hues without any of the concerns associated with synthetic red dyes (Red 40, Red 3). Extensive research suggests lycopene has antioxidant properties and is associated with reduced risk of prostate cancer and cardiovascular disease. It's fat-soluble and better absorbed from processed tomatoes (cooked with oil) than from raw tomatoes. No toxicity concerns at any dietary dose.",
+      what_to_do: "Green light — genuinely beneficial. Seeing lycopene used as a natural colorant instead of Red 40 or Red 3 is a strongly positive sign. No action needed."
+    },
+    "spirulina color": {
+      name: "Spirulina (as Food Coloring)",
+      aliases: ["spirulina extract", "spirulina blue", "phycocyanin", "e6"],
+      rating: "green",
+      banned_in: [],
+      description: "Spirulina is a blue-green algae used as a natural blue-green food coloring. The active compound, phycocyanin, provides a vivid blue color that's increasingly replacing synthetic Blue 1 in products like blue-colored candies, ice cream, and drinks. Spirulina is one of the most nutrient-dense foods on earth — it's a complete protein source with B vitamins, iron, and antioxidants. As a coloring, the amounts used are small, but it's one of the few cases where a food dye may actually add nutritional value. No toxicity concerns. Note: some people with shellfish or algae allergies may react to spirulina.",
+      what_to_do: "Green light. One of the safest and most beneficial food colorants available. Its presence instead of synthetic dyes indicates a manufacturer with higher ingredient standards. People with shellfish allergies should check for reactions, though spirulina allergy is relatively rare."
+    },
+    "activated charcoal": {
+      name: "Activated Charcoal",
+      aliases: ["activated carbon", "vegetable carbon", "e153", "charcoal powder"],
+      rating: "yellow",
+      banned_in: ["EU (not approved as food additive)", "France (banned in food 2020)"],
+      description: "Activated charcoal is a trendy black food coloring used in burgers, ice cream, lemonade, and other food products for visual effect. It's made from charred plant material processed to increase surface area. The real concern: activated charcoal is medically used to absorb toxins and drugs in the gut — it doesn't discriminate. Consuming activated charcoal with food or medications can reduce absorption of those medications (including birth control, antibiotics, and heart medications) and potentially nutrients. It's essentially a non-selective oral detox agent being used as food dye. The EU hasn't approved it as a food additive; France banned it from food in 2020. The FDA has no specific regulations.",
+      what_to_do: "Avoid if you take any medications. Don't consume activated charcoal foods on the same day as important medications — timing won't fully protect you. This is an aesthetic ingredient that carries real interaction risks. The EU's approach of not approving it as a food additive is the reasonable position."
+    },
+    "natural flavors expanded": {
+      name: "Natural Flavors (Full Detail)",
+      aliases: ["natural flavor", "natural flavoring", "natural flavourings", "wonf", "with other natural flavors"],
+      rating: "yellow",
+      banned_in: [],
+      description: "The FDA defines 'natural flavors' as substances derived from plant or animal sources — but the definition allows up to 100+ chemical compounds in a single 'natural flavor,' including solvents, emulsifiers, and preservatives, none of which need to be disclosed. Examples of what can hide here: castoreum (beaver anal gland secretion used in raspberry and vanilla flavoring), civet (cat secretion), insect-derived compounds, and complex chemical mixtures. The term also allows companies to conceal proprietary formulations. It's the second most common ingredient on food labels after salt, and it means you genuinely cannot know what you're eating from the label alone. People with specific food allergies or religious dietary restrictions face real hidden risks.",
+      what_to_do: "Treat as a transparency red flag. Not automatically dangerous, but you're choosing to eat an undisclosed mixture. People with allergies, kosher/halal restrictions, or veganism should be aware that natural flavors may contain animal-derived compounds. Prefer products that specify their flavor sources."
     }
   };
 
@@ -831,6 +999,32 @@
         showNoResults();
       }
     }, 200);
+  });
+
+  // Build featured ingredients section
+  const FEATURED = [
+    { key: 'red 40', label: 'Red 40', emoji: '🔴' },
+    { key: 'aspartame', label: 'Aspartame', emoji: '🧪' },
+    { key: 'msg', label: 'MSG', emoji: '🍜' },
+    { key: 'bha', label: 'BHA', emoji: '⚗️' },
+    { key: 'hfcs', label: 'High Fructose Corn Syrup', emoji: '🍬' },
+    { key: 'carrageenan', label: 'Carrageenan', emoji: '🌊' }
+  ];
+  const featuredEl = document.getElementById('featured-ingredients');
+  FEATURED.forEach(f => {
+    const card = document.createElement('div');
+    card.style.cssText = 'background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s, background 0.2s;';
+    const data = INGREDIENTS[f.key];
+    const dotColor = data.rating === 'red' ? '#ef4444' : data.rating === 'yellow' ? '#f59e0b' : '#22c55e';
+    card.innerHTML = `<span style="font-size: 20px;">${f.emoji}</span><div><div style="font-size: 14px; font-weight: 700; color: var(--text-primary); line-height: 1.3;">${f.label}</div><div style="display: flex; align-items: center; gap: 5px; margin-top: 3px;"><span style="width:8px;height:8px;border-radius:50%;background:${dotColor};display:inline-block;"></span><span style="font-size: 12px; color: #6b7280;">${data.rating === 'red' ? 'Avoid' : data.rating === 'yellow' ? 'Caution' : 'Safe'}</span></div></div>`;
+    card.addEventListener('mouseover', () => { card.style.borderColor = 'rgba(34,197,94,0.4)'; card.style.background = 'var(--bg-card-hover)'; });
+    card.addEventListener('mouseout', () => { card.style.borderColor = 'var(--border)'; card.style.background = 'var(--bg-card)'; });
+    card.addEventListener('click', () => {
+      searchInput.value = f.label;
+      showResult(f.key);
+      document.getElementById('ingredient-search').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    featuredEl.appendChild(card);
   });
 
   // Build browse list
