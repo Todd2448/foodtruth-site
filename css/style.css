@@ -1393,12 +1393,51 @@ footer {
   }
 }
 
+@media (max-width: 900px) {
+  .nav-links {
+    gap: 10px;
+  }
+  .nav-link {
+    font-size: 13px;
+  }
+  .nav-cta {
+    padding: 7px 14px;
+    font-size: 13px;
+  }
+}
+
 @media (max-width: 768px) {
   .nav-links {
-    gap: 12px;
+    display: none;
   }
+  .nav-inner {
+    justify-content: space-between;
+  }
+  /* Show a simplified mobile nav row below the logo */
+  nav {
+    padding-bottom: 0;
+  }
+}
 
+/* Mobile nav override: show key links on small screens */
+@media (max-width: 768px) {
+  .nav-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-end;
+  }
+  /* Hide lower-priority links on small screens */
+  .nav-link:nth-child(1),
+  .nav-link:nth-child(4),
+  .nav-link:nth-child(5) {
+    display: none;
+  }
   .nav-link {
-    font-size: 14px;
+    font-size: 13px;
+  }
+  .nav-cta {
+    padding: 7px 12px;
+    font-size: 13px;
   }
 }
