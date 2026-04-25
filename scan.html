@@ -14,8 +14,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
-  <!-- ZXing barcode scanner -->
-  <script src="https://unpkg.com/@zxing/library@0.19.1/umd/index.min.js"></script>
+  <!-- ZXing loaded on demand -->
   <style>
     .camera-btn {
       width: 100%;
@@ -525,9 +524,14 @@
       if (!barcode || barcode.length < 6) {
         input.focus();
         input.style.borderColor = '#ef4444';
-        setTimeout(() => input.style.borderColor = '', 1000);
+        errorMsg.innerHTML = '<strong>Please enter a barcode number</strong> (the digits under the lines on the back of the package — usually 10-13 digits)';
+        errorBox.style.display = 'block';
+        loadingBox.style.display = 'none';
+        resultBox.style.display = 'none';
+        setTimeout(() => { input.style.borderColor = ''; }, 2000);
         return;
       }
+      errorBox.style.display = 'none';
 
       scanBtn.disabled = true;
       loadingBox.style.display = 'block';
@@ -630,31 +634,43 @@
     }
 
     // ============================================================
-    // CAMERA BARCODE SCANNING
+    // CAMERA BARCODE SCANNING — load ZXing on demand
     // ============================================================
     let codeReader = null;
     let cameraActive = false;
 
+    function loadZXing() {
+      return new Promise((resolve, reject) => {
+        if (window.ZXing) return resolve();
+        const s = document.createElement('script');
+        s.src = 'https://unpkg.com/@zxing/library@0.19.1/umd/index.min.js';
+        s.onload = resolve;
+        s.onerror = reject;
+        document.head.appendChild(s);
+      });
+    }
+
     async function startCamera() {
       const cameraBtn = document.getElementById('cameraBtn');
       const cameraWrap = document.getElementById('cameraWrap');
-      const video = document.getElementById('cameraVideo');
-
-      if (!window.ZXing) {
-        alert('Camera scanner not available. Please type the barcode number instead.');
-        return;
-      }
 
       try {
         cameraBtn.disabled = true;
-        cameraBtn.textContent = '📷 Starting camera...';
+        cameraBtn.innerHTML = '📷 Loading camera...';
+
+        await loadZXing();
+
         cameraWrap.style.display = 'block';
         cameraActive = true;
 
         codeReader = new ZXing.BrowserMultiFormatReader();
         const devices = await codeReader.listVideoInputDevices();
 
-        // Prefer back camera on mobile
+        if (!devices || devices.length === 0) {
+          throw new Error('No camera found');
+        }
+
+        // Prefer back/environment camera on mobile
         const backCam = devices.find(d => /back|rear|environment/i.test(d.label)) || devices[devices.length - 1];
         const deviceId = backCam ? backCam.deviceId : undefined;
 
@@ -664,7 +680,6 @@
             if (barcode && barcode.length >= 6) {
               stopCamera();
               input.value = barcode;
-              // Flash green
               input.style.borderColor = '#22c55e';
               setTimeout(() => { input.style.borderColor = ''; }, 800);
               doScan();
@@ -672,15 +687,18 @@
           }
         });
 
-        cameraBtn.textContent = '📷 Camera active — point at barcode';
+        cameraBtn.innerHTML = '📷 Scanning… point at barcode';
+        cameraBtn.disabled = false;
 
       } catch (e) {
         console.error('Camera error:', e);
         stopCamera();
         if (e.name === 'NotAllowedError') {
-          alert('Camera access denied. Please allow camera access and try again, or type the barcode manually.');
+          alert('Camera access denied.\n\nTo fix: tap the lock icon in your browser address bar and allow camera access. Or just type the barcode number below.');
+        } else if (e.name === 'NotFoundError' || e.message === 'No camera found') {
+          alert('No camera detected. Please type the barcode number instead.');
         } else {
-          alert('Could not start camera. Please type the barcode number instead.');
+          alert('Camera not available on this device/browser. Please type the barcode number instead.');
         }
       }
     }
@@ -693,9 +711,11 @@
       }
       const cameraWrap = document.getElementById('cameraWrap');
       const cameraBtn = document.getElementById('cameraBtn');
-      cameraWrap.style.display = 'none';
-      cameraBtn.disabled = false;
-      cameraBtn.innerHTML = '📷 Scan with Camera';
+      if (cameraWrap) cameraWrap.style.display = 'none';
+      if (cameraBtn) {
+        cameraBtn.disabled = false;
+        cameraBtn.innerHTML = '📷 Scan with Camera';
+      }
     }
   </script>
 
