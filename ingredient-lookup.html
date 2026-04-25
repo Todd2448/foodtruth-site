@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="FoodPeel Ingredient Lookup — Search any food additive or ingredient and instantly learn if it's safe, what it's banned from, and what to do about it. No chemistry degree required." />
+  <meta property="og:title" content="FoodPeel Ingredient Lookup — Is That Ingredient Safe?" />
+  <meta property="og:description" content="Search 30+ common food additives and get instant safety ratings, banned country info, and plain-English descriptions." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://foodpeel.com/ingredient-lookup.html" />
+  <meta property="og:image" content="https://foodpeel.com/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://foodpeel.com/images/og-image.png" />
+  <link rel="canonical" href="https://foodpeel.com/ingredient-lookup.html" />
+  <title>Ingredient Lookup — Is That Additive Safe? | FoodPeel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .lookup-hero {
+      padding: 140px 0 60px;
+      text-align: center;
+    }
+    .lookup-search-wrap {
+      max-width: 640px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .lookup-search {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(34,197,94,0.3);
+      border-radius: 14px;
+      padding: 18px 24px 18px 56px;
+      font-size: 18px;
+      color: var(--text-primary);
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      box-sizing: border-box;
+    }
+    .lookup-search:focus {
+      border-color: var(--accent-green);
+      box-shadow: 0 0 0 3px rgba(34,197,94,0.15);
+    }
+    .lookup-search::placeholder { color: #4b5563; }
+    .search-icon {
+      position: absolute;
+      left: 18px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 22px;
+      pointer-events: none;
+    }
+    .lookup-hint {
+      font-size: 14px;
+      color: #4b5563;
+      margin-top: 12px;
+      text-align: center;
+    }
+    .results-area {
+      max-width: 800px;
+      margin: 40px auto 0;
+    }
+    .result-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 40px;
+      margin-bottom: 20px;
+      display: none;
+      animation: fadeSlideIn 0.3s ease;
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .result-card.visible { display: block; }
+    .result-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .result-name {
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .result-aliases {
+      font-size: 14px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+    .rating-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .rating-red { background: rgba(239,68,68,0.12); border: 1px solid rgba(239,68,68,0.3); color: #ef4444; }
+    .rating-yellow { background: rgba(245,158,11,0.12); border: 1px solid rgba(245,158,11,0.3); color: #f59e0b; }
+    .rating-green { background: rgba(34,197,94,0.12); border: 1px solid rgba(34,197,94,0.3); color: var(--accent-green); }
+    .result-description {
+      font-size: 17px;
+      color: #d1d5db;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .result-banned {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .banned-label {
+      font-size: 13px;
+      color: #6b7280;
+      font-weight: 600;
+      margin-bottom: 4px;
+      display: block;
+      width: 100%;
+    }
+    .banned-chip {
+      background: rgba(239,68,68,0.08);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 13px;
+      color: #ef4444;
+      font-weight: 600;
+    }
+    .no-ban-chip {
+      background: rgba(34,197,94,0.08);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 100px;
+      padding: 4px 12px;
+      font-size: 13px;
+      color: var(--accent-green);
+      font-weight: 600;
+    }
+    .result-action {
+      background: rgba(34,197,94,0.07);
+      border: 1px solid rgba(34,197,94,0.15);
+      border-radius: 12px;
+      padding: 16px 20px;
+    }
+    .result-action-label {
+      font-size: 12px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-green);
+      margin-bottom: 6px;
+    }
+    .result-action-text {
+      font-size: 16px;
+      color: #d1d5db;
+      line-height: 1.6;
+    }
+    .no-results {
+      text-align: center;
+      padding: 60px 24px;
+      display: none;
+    }
+    .no-results.visible { display: block; }
+    .no-results-emoji { font-size: 48px; margin-bottom: 16px; }
+    .no-results h3 { font-size: 22px; font-weight: 800; color: var(--text-primary); margin-bottom: 10px; }
+    .no-results p { font-size: 16px; color: #6b7280; }
+    .all-ingredients-section {
+      max-width: 800px;
+      margin: 60px auto 0;
+    }
+    .all-ing-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 20px;
+    }
+    .ingredients-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 10px;
+    }
+    .ing-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: border-color 0.2s, background 0.2s;
+      font-size: 14px;
+      color: #d1d5db;
+      text-align: left;
+    }
+    .ing-chip:hover {
+      border-color: var(--border-accent);
+      background: var(--bg-card-hover);
+    }
+    .ing-chip .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: var(--accent-green); }
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 60px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav>
+    <div class="container">
+      <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+          <span class="nav-logo-emoji">🥦</span>
+          <span class="nav-logo-text">Food<span>Peel</span></span>
+          <span class="nav-tagline">Peel back the label.</span>
+        </a>
+        <div class="nav-links">
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="blog/" class="nav-link">Blog</a>
+          <a href="ingredient-lookup.html" class="nav-link" style="color: var(--accent-green);">Ingredients</a>
+          <a href="pricing.html" class="nav-link">Pricing</a>
+          <a href="faq.html" class="nav-link">FAQ</a>
+          <a href="about.html" class="nav-link">About</a>
+          <a href="early-access.html" class="nav-cta">Get Early Access →</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="lookup-hero">
+    <div class="container">
+      <span class="section-label">Ingredient Lookup</span>
+      <h1 class="section-title" style="font-size: clamp(30px, 5vw, 52px); max-width: 680px; margin: 0 auto 16px;">
+        Is That Ingredient<br /><span style="color: var(--accent-green);">Actually Safe?</span>
+      </h1>
+      <div class="divider center"></div>
+      <p class="section-sub" style="text-align: center; margin: 0 auto 40px; max-width: 520px;">
+        Search any additive or ingredient below. Get a plain-English rating, what countries have banned it, and what to do about it.
+      </p>
+
+      <div class="lookup-search-wrap">
+        <span class="search-icon">🔍</span>
+        <input
+          type="text"
+          id="ingredient-search"
+          class="lookup-search"
+          placeholder='Try "Red 40", "BHA", "carrageenan", "MSG"...'
+          autocomplete="off"
+          spellcheck="false"
+        />
+      </div>
+      <p class="lookup-hint">30+ ingredients in the database · More added regularly</p>
+    </div>
+  </section>
+
+  <!-- ===== RESULTS ===== -->
+  <div class="container" style="padding-bottom: 80px;">
+    <div id="results-area" class="results-area"></div>
+    <div id="no-results" class="no-results results-area">
+      <div class="no-results-emoji">🤔</div>
+      <h3>We don't have that one yet</h3>
+      <p>Our database grows regularly. For the full picture, FoodPeel (the app) covers thousands of ingredients. <a href="early-access.html" style="color: var(--accent-green);">Get early access →</a></p>
+    </div>
+
+    <hr class="section-divider" />
+
+    <div class="all-ingredients-section">
+      <div class="all-ing-title">Browse All Ingredients (click any to look up)</div>
+      <div id="ingredients-list" class="ingredients-list"></div>
+    </div>
+  </div>
+
+  <!-- ===== BOTTOM CTA ===== -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <span class="section-label">The Full Database</span>
+        <h2 class="cta-headline">This Is Just the Preview</h2>
+        <p class="cta-sub">
+          The FoodPeel app covers thousands of ingredients, plus barcode scanning so you never have to type anything. Get early access and see every ingredient in every product you buy.
+        </p>
+        <a href="early-access.html" class="btn-primary" style="display: inline-block; text-decoration: none; padding: 16px 32px; font-size: 18px;">Get Early Access →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-copy">© 2026 FoodPeel · Built with <span class="footer-heart">❤️</span> for families</p>
+        <div class="footer-links">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="faq.html">FAQ</a>
+          <a href="mailto:hello@foodpeel.com">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+  const INGREDIENTS = {
+    "red 40": {
+      name: "Red 40 (Allura Red)",
+      aliases: ["allura red", "fd&c red no. 40", "fd&c red 40", "e129"],
+      rating: "red",
+      banned_in: ["EU requires warning label", "Norway", "Finland"],
+      description: "Red 40 is the most widely used artificial food dye in the United States. It's a petroleum-derived synthetic dye used to give foods a red or orange-red color. The EU requires products containing Red 40 to carry a warning label: 'may have an adverse effect on activity and attention in children.' It's linked to hyperactivity in children and contains trace amounts of benzidine, a potential carcinogen. Despite these concerns, the FDA considers it safe at current use levels.",
+      what_to_do: "Avoid in foods your children eat regularly. Look for products colored with beet extract, paprika, or other natural alternatives. Check cereals, candy, fruit drinks, and flavored snacks — these are the biggest sources."
+    },
+    "yellow 5": {
+      name: "Yellow 5 (Tartrazine)",
+      aliases: ["tartrazine", "fd&c yellow no. 5", "fd&c yellow 5", "e102"],
+      rating: "red",
+      banned_in: ["EU requires warning label", "Norway", "Austria"],
+      description: "Yellow 5 (Tartrazine) is a synthetic lemon-yellow dye made from petroleum. It's one of the most commonly used food dyes in the US, found in mac & cheese, chips, pickles, sports drinks, and candy. Like Red 40, EU products containing it must carry a warning label about effects on children's activity and attention. It's also the most common dye associated with allergic reactions, particularly in people with aspirin sensitivity. The FDA requires it to be listed by name (not just 'artificial color') because of this.",
+      what_to_do: "Check for it by name on labels. Particularly important if anyone in your household has aspirin sensitivity, asthma, or ADHD. Many brands have voluntarily reformulated products sold in Europe while keeping the same formula for US products — so look for 'no artificial colors' labels."
+    },
+    "yellow 6": {
+      name: "Yellow 6 (Sunset Yellow)",
+      aliases: ["sunset yellow", "fd&c yellow no. 6", "fd&c yellow 6", "e110"],
+      rating: "red",
+      banned_in: ["EU requires warning label", "Norway", "Finland"],
+      description: "Yellow 6, also known as Sunset Yellow, is a petroleum-derived synthetic dye that gives an orange-yellow color. It's part of the 'Southampton Six' — the six dyes specifically tested in the landmark 2007 Lancet study that found significant increases in hyperactivity in children. The study prompted the EU to require warning labels. Yellow 6 is also contaminated with carcinogenic byproducts including benzidine and 4-aminobiphenyl at trace levels that the FDA considers acceptable.",
+      what_to_do: "Treat the same as Red 40 and Yellow 5. Check orange sodas, candy, cereal, baked goods, and snack foods. Alternatives to look for: annatto, turmeric, beta-carotene (from food sources)."
+    },
+    "bha": {
+      name: "BHA (Butylated Hydroxyanisole)",
+      aliases: ["butylated hydroxyanisole", "e320"],
+      rating: "red",
+      banned_in: ["EU (restricted)", "Japan", "Canada (restricted)"],
+      description: "BHA is a synthetic antioxidant preservative used to prevent fats and oils from going rancid. It's found in chips, crackers, cereals, chewing gum, vegetable oils, and even some medications and cosmetics. The US National Toxicology Program classifies BHA as 'reasonably anticipated to be a human carcinogen' based on animal studies. Despite this, the FDA considers it GRAS (Generally Recognized as Safe) at low levels. The EU has restricted its use significantly and it's been banned from use in infant food in many countries.",
+      what_to_do: "Avoid or minimize. Look for products using natural preservatives like vitamin E (tocopherols), rosemary extract, or vitamin C (ascorbic acid) instead. Check chip bags, cereal boxes, chewing gum, and baked goods."
+    },
+    "bht": {
+      name: "BHT (Butylated Hydroxytoluene)",
+      aliases: ["butylated hydroxytoluene", "e321"],
+      rating: "red",
+      banned_in: ["EU (restricted)", "Japan", "UK (restricted)"],
+      description: "BHT is a close cousin of BHA, also used as a synthetic preservative to prevent oxidation in fats and oils. You'll find it in cereal boxes, chips, gum, convenience foods, and even packaging materials that can transfer into food. BHT has been linked to cancer in some animal studies (though evidence is mixed), hormone disruption, and thyroid effects. Like BHA, the FDA considers it safe at low levels while other countries have taken more precautionary stances.",
+      what_to_do: "Minimize exposure, especially for children. It's usually listed clearly on the label. Check cereals, chips, crackers, and baked goods. Alternatives: vitamin E (tocopherols) is a natural preservative that works similarly without the concerns."
+    },
+    "tbhq": {
+      name: "TBHQ (Tertiary Butylhydroquinone)",
+      aliases: ["tertiary butylhydroquinone", "tert-butylhydroquinone", "e319"],
+      rating: "red",
+      banned_in: ["EU (restricted)", "Japan", "Canada"],
+      description: "TBHQ is a petroleum-derived synthetic preservative used to extend the shelf life of oils and fats. It's in Pop-Tarts, RITZ crackers, Cheez-Its, McDonald's chicken nuggets, and hundreds of other processed foods. In high doses, it causes precancerous stomach tumors in animals. At normal food levels, the FDA says it's safe — but the dose that causes harm in animals isn't much higher than the amount found in some foods. A 2020 NIH study also found TBHQ may impair immune response to influenza.",
+      what_to_do: "This one is worth actively avoiding. It appears in many popular snack foods — check the label. Its presence is often a signal that the food is heavily processed overall. Look for 'no preservatives' or 'preserved with vitamin E' on snack foods."
+    },
+    "msg": {
+      name: "MSG (Monosodium Glutamate)",
+      aliases: ["monosodium glutamate", "glutamate", "e621", "sodium glutamate"],
+      rating: "yellow",
+      banned_in: [],
+      description: "MSG is a flavor enhancer made from glutamate (an amino acid naturally occurring in many foods including tomatoes, cheese, and mushrooms). It's been controversial since the 1960s when 'Chinese Restaurant Syndrome' blamed it for headaches and discomfort — but extensive research has failed to consistently confirm this connection. The FDA classifies MSG as generally safe. The real issue with MSG is that it's used almost exclusively in heavily processed foods, suggesting those foods are otherwise lacking in real flavor. The glutamate itself isn't the primary concern.",
+      what_to_do: "The science doesn't support dramatic avoidance, but people who report sensitivity should avoid it. If you don't have sensitivity, the bigger concern is the ultra-processed food context it appears in. Natural glutamate from whole foods (parmesan, tomatoes, mushrooms) behaves differently in your body."
+    },
+    "carrageenan": {
+      name: "Carrageenan",
+      aliases: ["e407"],
+      rating: "red",
+      banned_in: ["EU (banned in infant formula)", "Codex Alimentarius (removed from infant formula)"],
+      description: "Carrageenan is derived from red seaweed and used as a thickener, emulsifier, and stabilizer in dairy products, infant formula, plant-based milks, deli meats, and more. Despite its 'natural' origin, carrageenan has been linked to intestinal inflammation, ulcers, and gut damage in animal studies and cell studies. The Cornucopia Institute petitioned the FDA to ban it from organic foods. The National Organic Standards Board voted to remove it from the organic allowed list in 2016 (though the USDA later reversed this). It was removed from EU infant formula in 2014 due to safety concerns.",
+      what_to_do: "Avoid in infant formula and children's food especially. Check plant-based milks carefully — many use carrageenan as a thickener. Look for brands that use alternatives like sunflower lecithin or guar gum. If you have IBS, Crohn's, or gut issues, try eliminating it and see if symptoms improve."
+    },
+    "sodium nitrate": {
+      name: "Sodium Nitrate / Sodium Nitrite",
+      aliases: ["sodium nitrite", "e250", "e251", "nitrates", "nitrites", "cured with"],
+      rating: "red",
+      banned_in: ["EU restricts levels significantly"],
+      description: "Sodium nitrate and nitrite are preservatives used in processed meats: hot dogs, bacon, deli meats, sausage, and canned meats. When these compounds react with proteins in meat (or in your digestive tract), they can form nitrosamines — potent carcinogens. The World Health Organization classifies processed meat as a Group 1 carcinogen (the same category as tobacco), largely because of nitrate/nitrite compounds. The EU has set strict limits and mandates reduction targets; the US has not.",
+      what_to_do: "Limit processed meat overall. When you do buy it, look for products labeled 'uncured' and 'no nitrates or nitrites added' — though be aware that many 'uncured' products use celery powder, which contains naturally occurring nitrates and converts to the same compounds. True nitrate-free meat is rare."
+    },
+    "hfcs": {
+      name: "High Fructose Corn Syrup",
+      aliases: ["high-fructose corn syrup", "hfcs", "corn syrup", "glucose-fructose", "isoglucose"],
+      rating: "red",
+      banned_in: ["EU restricts production quotas significantly"],
+      description: "HFCS is a sweetener made by processing corn starch to convert glucose into fructose. It's cheaper than sugar and extends shelf life, which is why it's in so many products. The debate over whether HFCS is worse than regular sugar is ongoing — both are bad in excess, but HFCS is metabolized primarily by the liver and doesn't trigger the same insulin/satiety signals as glucose. It's linked to fatty liver disease, insulin resistance, obesity, and metabolic syndrome. Its presence in a product almost always signals that it's heavily processed and engineered for palatability.",
+      what_to_do: "Reduce processed food consumption generally — HFCS will decrease automatically. It's in soda, bread, ketchup, salad dressings, yogurt, energy bars, and hundreds of other products. Read labels. If it's in the top 5 ingredients, the product is likely primarily a sugar delivery vehicle."
+    },
+    "phos": {
+      name: "Partially Hydrogenated Oils (PHOs / Trans Fats)",
+      aliases: ["partially hydrogenated oil", "partially hydrogenated vegetable oil", "trans fat", "trans fats", "phvo"],
+      rating: "red",
+      banned_in: ["US (FDA banned 2018, phased out)", "EU (banned above threshold 2021)", "Canada", "Denmark", "Switzerland"],
+      description: "Partially hydrogenated oils are industrially processed fats created by forcing hydrogen into liquid vegetable oils, creating solid or semi-solid fats with long shelf lives. This process creates trans fats, which dramatically raise LDL (bad) cholesterol, lower HDL (good) cholesterol, and increase cardiovascular disease risk. The FDA finally banned PHOs from food in 2018. They were phased out by 2020 for most products. If you're reading a product with 'partially hydrogenated' in the ingredient list, you have an old or non-compliant product.",
+      what_to_do: "These should be gone from US food products. If you see 'partially hydrogenated' on any ingredient list, that's a serious red flag — either the product is old or the company hasn't complied. Don't buy it."
+    },
+    "titanium dioxide": {
+      name: "Titanium Dioxide",
+      aliases: ["tio2", "e171", "ci 77891"],
+      rating: "red",
+      banned_in: ["EU (banned 2022)", "France (banned 2020)"],
+      description: "Titanium dioxide is a white powder used to make foods whiter and brighter. It's found in powdered sugar, candies, chewing gum, salad dressings, and some medications. The European Food Safety Authority reviewed the evidence in 2021 and concluded it could no longer be considered safe as a food additive due to concerns about genotoxicity (the ability to damage DNA). France banned it in 2020; the EU followed with a full ban in 2022. The FDA still considers it safe and it remains legal in the US.",
+      what_to_do: "Another example of the EU/US regulatory gap. Check powdered sugar, white candy, gum, and frosting. The FDA continues to allow it, but given the EFSA ruling, we rate it as a red — particularly for children who consume more of the products where it appears."
+    },
+    "propylene glycol": {
+      name: "Propylene Glycol",
+      aliases: ["propane-1,2-diol", "e1520", "pg"],
+      rating: "yellow",
+      banned_in: ["EU (restricted in food)"],
+      description: "Propylene glycol is used as a humectant (moisture-retaining agent), solvent, and carrier for flavors in processed foods. It's also found in antifreeze, but the grade used in food is pharmaceutical quality and at different doses — so this comparison, while alarming-sounding, isn't entirely fair. At food use levels, it's considered safe by most regulators. However, the EU restricts its use significantly and it's banned from infant formula and baby food. It can cause skin irritation, allergic reactions in sensitive individuals, and at high doses, neurological effects.",
+      what_to_do: "Not a high-priority concern at typical food exposure levels, but worth knowing about. It's mainly a concern in products like liquid sweeteners, flavored baked goods, and some beverages. Limiting processed food intake generally reduces exposure."
+    },
+    "sodium benzoate": {
+      name: "Sodium Benzoate",
+      aliases: ["benzoic acid", "e211", "e210"],
+      rating: "red",
+      banned_in: ["EU (restricted)", "Russia"],
+      description: "Sodium benzoate is a preservative used in acidic foods like sodas, fruit juices, pickles, and condiments. The problem: when it combines with ascorbic acid (Vitamin C) — which is commonly added to the same products as a preservative — it forms benzene, a known carcinogen. Additionally, the 2007 Lancet study used a combination of sodium benzoate and food dyes and found increased hyperactivity in children. The FDA requires monitoring of benzene formation but hasn't banned the combination.",
+      what_to_do: "Check sodas, fruit drinks, and products with both 'sodium benzoate' and 'vitamin C' or 'ascorbic acid' on the label — this combination is the highest concern. Store in cool, dark conditions to minimize benzene formation."
+    },
+    "potassium bromate": {
+      name: "Potassium Bromate",
+      aliases: ["e924", "bromate"],
+      rating: "red",
+      banned_in: ["EU", "UK", "Canada", "India", "Brazil", "China", "Japan"],
+      description: "Potassium bromate is a flour maturing and strengthening agent used in commercial baking to produce higher-rising, more elastic bread. It's been banned in most of the world since the 1990s because it's classified as a possible human carcinogen (Group 2B by IARC). California requires cancer warning labels on bread products containing it. The FDA has 'urged' bakers to stop using it voluntarily since 1991 — but has never mandated removal. It remains legal in most US states and is still found in some commercial breads.",
+      what_to_do: "In California, look for warning labels on baked goods. Everywhere else: check bread and baked good ingredient lists for 'potassium bromate.' Major national brands have mostly removed it, but some smaller bakeries still use it. This is a clear case where the FDA's voluntary approach has failed to match international standards."
+    },
+    "bvo": {
+      name: "BVO (Brominated Vegetable Oil)",
+      aliases: ["brominated vegetable oil"],
+      rating: "red",
+      banned_in: ["EU", "Japan", "India"],
+      description: "BVO is a food additive used to keep citrus-flavored drinks looking cloudy and prevent the artificial flavoring from separating out. It's derived from vegetable oil that has been reacted with bromine — a halogen used in flame retardants. Bromine accumulates in body fat and has been linked to neurological damage, thyroid disruption, and skin disorders in high doses. The FDA finally revoked BVO's GRAS status in 2024 after decades of pressure, citing animal studies. PepsiCo and Coca-Cola voluntarily removed it from Mountain Dew and Powerade years earlier.",
+      what_to_do: "Check citrus-flavored drinks — especially regional and store brands that may not have reformulated. With the FDA's 2024 ruling, it should be disappearing from US products, but check labels on any existing inventory."
+    },
+    "aspartame": {
+      name: "Aspartame",
+      aliases: ["e951", "nutrasweet", "equal", "aminosweet"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Aspartame is an artificial sweetener used in diet sodas, sugar-free products, chewing gum, and many 'light' or 'diet' versions of common foods. It's approximately 200x sweeter than sugar. In 2023, the WHO's International Agency for Research on Cancer classified aspartame as 'possibly carcinogenic to humans' (Group 2B) — the same category as aloe vera extract and pickled vegetables. The JECFA (Joint FAO/WHO Expert Committee) simultaneously said the acceptable daily intake hasn't changed and amounts in typical food use are safe. This dual announcement confused everyone, appropriately so. The science is genuinely uncertain.",
+      what_to_do: "Reasonable caution is warranted. People with phenylketonuria (PKU) must avoid it. For everyone else: 'possibly carcinogenic' means we don't have definitive evidence, not that it's clearly dangerous. Limiting diet soda consumption is generally sensible for multiple reasons beyond just aspartame."
+    },
+    "sucralose": {
+      name: "Sucralose",
+      aliases: ["splenda", "e955"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Sucralose is an artificial sweetener made by chlorinating sugar, making it 600x sweeter and non-caloric. It's widely used in 'sugar-free' and 'low-calorie' products and is heat-stable, making it popular for baking. Recent research has raised new concerns: a 2023 study found sucralose-6-acetate (formed in the gut after consuming sucralose) is genotoxic and may damage DNA and harm gut health. The European Food Safety Authority opened a review in 2023. The FDA continues to consider it safe. The gut microbiome effects are a growing area of research concern.",
+      what_to_do: "Moderate your use of sucralose-sweetened products, particularly if you use them daily. Sugar-free sodas, protein powders, and 'light' yogurts are the biggest sources. The gut microbiome concerns are worth taking seriously, especially if you have digestive issues."
+    },
+    "acesulfame k": {
+      name: "Acesulfame K (Ace-K)",
+      aliases: ["acesulfame potassium", "e950", "ace-k", "sunett", "sweet one"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Acesulfame K is an artificial sweetener about 200x sweeter than sugar. It's rarely used alone — usually combined with aspartame or sucralose to mask a bitter aftertaste. It's in diet sodas, energy drinks, protein bars, sugar-free gum, and baked goods. Animal studies in the 1970s showed potential carcinogenic concerns, and some researchers argue the approval studies were inadequate. More recent research suggests it may affect gut bacteria and insulin response. It's approved worldwide but remains less studied than aspartame.",
+      what_to_do: "The main exposure route is diet sodas and energy drinks, which usually combine it with other artificial sweeteners. Limiting these drinks is generally advisable for multiple reasons. Check ingredient lists for 'acesulfame potassium' alongside aspartame or sucralose."
+    },
+    "carmine": {
+      name: "Carmine (Red Dye from Insects)",
+      aliases: ["cochineal", "cochineal extract", "carminic acid", "crimson lake", "e120", "natural red 4"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Carmine is a red dye derived from dried, ground cochineal insects — a scale insect that lives on cacti. It's used in red-colored yogurts, juices, candies, cosmetics, and some artificial crab and lobster products. The FDA requires it to be listed by name because it can cause severe allergic reactions, including anaphylaxis, in some people. While it's natural in origin (not petroleum-derived), it's a common allergen, not vegetarian/vegan, and triggers reactions in people with cochineal hypersensitivity. It's labeled 'natural' but that classification is contested.",
+      what_to_do: "Check labels carefully if you have food allergies, follow a vegan/vegetarian diet, or have previously reacted to red-colored foods. Look for 'carmine,' 'cochineal extract,' or 'E120' in yogurt, juice drinks, candy, and artificially flavored seafood products."
+    },
+    "caramel color": {
+      name: "Caramel Color",
+      aliases: ["caramel coloring", "e150a", "e150b", "e150c", "e150d"],
+      rating: "yellow",
+      banned_in: ["California requires warning label for Class IV"],
+      description: "Caramel color is made by heating sugar and is used to give brown coloring to soft drinks, beer, soy sauce, and baked goods. There are four classes (E150a-d), and they're not all the same. Class IV caramel color (E150d), made with ammonium compounds, contains 4-methylimidazole (4-MEI) — a chemical shown to cause cancer in animal studies. California classified 4-MEI as a possible human carcinogen and requires warning labels on products with high levels. Coca-Cola and Pepsi reformulated their caramel color for California to avoid the label.",
+      what_to_do: "Check sodas, beer, and dark sauces. If the product lists 'caramel color' and is a dark-colored beverage, it's likely Class IV. Brands have been reducing 4-MEI levels, but the reformulation is inconsistent across products and states."
+    },
+    "edta": {
+      name: "EDTA (Ethylenediaminetetraacetic Acid)",
+      aliases: ["calcium disodium edta", "disodium edta", "e385", "edetate calcium disodium"],
+      rating: "yellow",
+      banned_in: [],
+      description: "EDTA is a chelating agent — it binds to metal ions — used as a preservative in salad dressings, condiments, canned legumes, and some beverages. It prevents oxidation and rancidity caused by trace metals. EDTA is generally considered safe at food use levels. The main concern is that it can chelate essential minerals in the gut, potentially reducing absorption of calcium, zinc, and iron. At high doses, it's also been linked to kidney damage. Typical food exposure is well below levels of concern, but it's worth knowing about for people with mineral deficiencies.",
+      what_to_do: "Low-priority concern at typical food levels. If you're consuming multiple products with EDTA daily, or if you have mineral absorption issues, it's worth reducing. Found primarily in mayo, salad dressings, canned beans, and some pickled products."
+    },
+    "polysorbate 80": {
+      name: "Polysorbate 80",
+      aliases: ["tween 80", "e433"],
+      rating: "yellow",
+      banned_in: ["EU restricts in some applications"],
+      description: "Polysorbate 80 is an emulsifier made from sorbitol, ethylene oxide, and oleic acid. It's used to keep ingredients mixed in ice cream, salad dressings, pickles, and vaccines. Emerging research suggests polysorbate 80 may alter the gut microbiome by disrupting the protective mucus layer that lines the intestines, potentially increasing gut permeability ('leaky gut') and promoting intestinal inflammation. A 2015 study in Nature found that polysorbate 80 and carboxymethylcellulose promoted metabolic syndrome and inflammatory bowel disease in mice. Human studies are limited but concerning.",
+      what_to_do: "Worth limiting, particularly if you have IBS, Crohn's, or other gut issues. Check ice cream, salad dressings, pickles, and baked goods. Look for alternatives without emulsifiers or with lecithin instead."
+    },
+    "xanthan gum": {
+      name: "Xanthan Gum",
+      aliases: ["e415"],
+      rating: "green",
+      banned_in: [],
+      description: "Xanthan gum is a thickener and stabilizer made by fermenting glucose with the bacterium Xanthomonas campestris. It's widely used in gluten-free baking, salad dressings, sauces, and processed foods. Unlike most food additives, xanthan gum has a reasonable safety record. It's a soluble fiber that acts as a prebiotic and can actually improve gut health in some cases. However, in very high doses, it can cause digestive issues (gas, bloating) in sensitive individuals. People with severe corn, wheat, or soy allergies should check the source, as xanthan gum is often derived from these.",
+      what_to_do: "Generally low concern. If you're sensitive and notice digestive issues after foods containing xanthan gum, try reducing it. Check the source if you have corn/soy/wheat allergies. This is one of the safer thickeners on the market."
+    },
+    "maltodextrin": {
+      name: "Maltodextrin",
+      aliases: ["e1400"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Maltodextrin is a highly processed starch derivative made from corn, wheat, or potato starch. It's used as a thickener, filler, and preservative in protein powders, seasoning packets, candy, salad dressings, and many packaged foods. Despite having a mild or slightly sweet taste, maltodextrin has a higher glycemic index than table sugar — it raises blood sugar rapidly. Studies suggest it may alter gut bacteria composition, promoting growth of harmful bacteria like E. coli, and reducing gut health. It's caloric but often not counted as 'sugar' on labels.",
+      what_to_do: "Check protein powders and powdered supplement shakes especially — maltodextrin is often a primary filler. Limit products where it appears in the first three ingredients. If you have diabetes or metabolic issues, it can significantly affect blood sugar despite not being labeled as sugar."
+    },
+    "natural flavors": {
+      name: "Natural Flavors",
+      aliases: ["natural flavor", "natural flavoring", "natural flavourings"],
+      rating: "yellow",
+      banned_in: [],
+      description: "The FDA defines 'natural flavors' as flavoring substances derived from plants, animals, or other natural sources — but the definition is intentionally broad. A 'natural flavor' can contain up to 100 different chemical compounds, solvents, preservatives, and emulsifiers, none of which have to be disclosed individually. This means manufacturers can hide almost anything under 'natural flavors.' Common examples include castoreum (a secretion from beaver anal glands used in vanilla flavoring) and various extraction byproducts. The category also allows manufacturers to obscure proprietary formulations from competitors.",
+      what_to_do: "The term 'natural flavors' is a signal that something is being obscured. It's not automatically dangerous, but it means you can't fully evaluate the product. If you have food sensitivities or dietary restrictions, products with 'natural flavors' may contain hidden allergens. Prefer products that list specific flavorings."
+    },
+    "silicon dioxide": {
+      name: "Silicon Dioxide (Silica)",
+      aliases: ["silica", "e551", "amorphous silicon dioxide"],
+      rating: "green",
+      banned_in: [],
+      description: "Silicon dioxide is a naturally occurring mineral compound (the same stuff as sand) used as an anti-caking agent in powdered and spice products to prevent clumping. It's also found in some supplements as a flow agent. The FDA considers it generally safe. The main concern historically was with crystalline silica (quartz), which causes silicosis when inhaled occupationally — but food-grade silicon dioxide is amorphous (different structure) and consumed, not inhaled, at trace levels. EFSA conducted a review in 2018 and determined that the available data were insufficient to set a safe intake level, which has prompted some caution in Europe.",
+      what_to_do: "Low concern in food applications. Standard in spice blends, table salt, protein powder, and other fine powders. Not a reason to avoid a product. If you're worried, buying whole spices and grinding them yourself is an easy way to eliminate it."
+    },
+    "cellulose gel": {
+      name: "Cellulose (Microcrystalline Cellulose / Cellulose Gel)",
+      aliases: ["microcrystalline cellulose", "mcc", "e460", "powdered cellulose", "cellulose powder"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Cellulose is a structural component of plant cell walls. In processed food, it's extracted and used as a texturizer, fat replacer, and thickener in low-fat dairy products, shredded cheese, bread, and supplements. You've probably heard the urban myth that some grated parmesan contains wood pulp — cellulose from wood is the same chemical compound as cellulose from cotton or plant sources, so technically accurate. At food use levels, it's inert (humans can't digest cellulose) and passes through. The concern is more about what its presence signals: it's a cheap filler used to improve texture without adding nutrition, often in heavily processed products.",
+      what_to_do: "Generally safe from a toxicology standpoint, but its presence often indicates a heavily processed product engineered for texture rather than nutrition. Find it in low-fat dairy, pre-shredded cheese, processed baked goods, and supplements."
+    },
+    "sulfites": {
+      name: "Sulfites (Sulfur Dioxide)",
+      aliases: ["sulphites", "sulfur dioxide", "e220", "e221", "e222", "e223", "e224", "sodium sulfite", "sodium bisulfite", "potassium bisulfite"],
+      rating: "yellow",
+      banned_in: ["EU restricts levels", "US: banned from fresh produce since 1986"],
+      description: "Sulfites are preservatives used in wine, dried fruit, processed potatoes, condiments, and some packaged foods. They're also naturally occurring in some fermented products. In 1986, the FDA banned sulfites from fresh produce after multiple deaths in people with severe sulfite sensitivity. An estimated 1 in 100 people is sensitive to sulfites — most are asthmatic. Reactions range from hives and flushing to severe asthmatic reactions. The FDA requires sulfites to be listed on labels when they exceed 10 ppm.",
+      what_to_do: "Critical if you have asthma — check wine and dried fruit especially. Even 'sulfite-free' wines may contain naturally occurring sulfites from fermentation. If you notice reactions (headaches, flushing, breathing difficulty) after wine or dried fruit, sulfite sensitivity is likely. Look for 'no added sulfites' and organic dried fruit, which often uses less."
+    },
+    "parabens": {
+      name: "Parabens",
+      aliases: ["methylparaben", "propylparaben", "ethylparaben", "butylparaben", "e214", "e216", "e218"],
+      rating: "red",
+      banned_in: ["EU (restricted/banned in food)", "Japan (banned in food)"],
+      description: "Parabens are preservatives used in some processed foods, beverages, and condiments. They're much more common in cosmetics, but food use exists. Parabens mimic estrogen in the body and are classified as endocrine disruptors. They've been found in human breast tissue. The EU has banned several parabens from food and severely restricted others. The FDA hasn't taken similar action for food, though the EU and California have driven significant voluntary reformulation in cosmetics. Evidence links paraben exposure to breast cancer, reproductive toxicity, and developmental effects.",
+      what_to_do: "Parabens in food are less common than in cosmetics, but check packaged baked goods, condiments, and beverages. The bigger exposure is through personal care products. Look for products labeled 'paraben-free.'"
+    }
+  };
+
+  // Build the search index (aliases map to keys)
+  const searchIndex = {};
+  for (const [key, data] of Object.entries(INGREDIENTS)) {
+    searchIndex[key] = key;
+    for (const alias of data.aliases) {
+      searchIndex[alias.toLowerCase()] = key;
+    }
+  }
+
+  function getRatingBadge(rating) {
+    if (rating === 'red') return '<span class="rating-badge rating-red">🔴 Avoid</span>';
+    if (rating === 'yellow') return '<span class="rating-badge rating-yellow">🟡 Use Caution</span>';
+    return '<span class="rating-badge rating-green">🟢 Generally Safe</span>';
+  }
+
+  function getDotClass(rating) {
+    if (rating === 'red') return 'dot-red';
+    if (rating === 'yellow') return 'dot-yellow';
+    return 'dot-green';
+  }
+
+  function showResult(key) {
+    const data = INGREDIENTS[key];
+    const resultsArea = document.getElementById('results-area');
+    const noResults = document.getElementById('no-results');
+
+    noResults.classList.remove('visible');
+
+    const bannedHtml = data.banned_in.length > 0
+      ? `<span class="banned-label">🚫 Banned or restricted in:</span>${data.banned_in.map(b => `<span class="banned-chip">${b}</span>`).join('')}`
+      : `<span class="no-ban-chip">✓ No major bans (check label context)</span>`;
+
+    resultsArea.innerHTML = `
+      <div class="result-card visible">
+        <div class="result-header">
+          <div>
+            <div class="result-name">${data.name}</div>
+            ${data.aliases.length > 0 ? `<div class="result-aliases">Also: ${data.aliases.slice(0,4).join(' · ')}</div>` : ''}
+          </div>
+          ${getRatingBadge(data.rating)}
+        </div>
+        <p class="result-description">${data.description}</p>
+        <div class="result-banned">${bannedHtml}</div>
+        <div class="result-action">
+          <div class="result-action-label">✅ What to Do</div>
+          <div class="result-action-text">${data.what_to_do}</div>
+        </div>
+      </div>
+    `;
+  }
+
+  function showNoResults() {
+    const resultsArea = document.getElementById('results-area');
+    const noResults = document.getElementById('no-results');
+    resultsArea.innerHTML = '';
+    noResults.classList.add('visible');
+  }
+
+  function clearResults() {
+    const resultsArea = document.getElementById('results-area');
+    const noResults = document.getElementById('no-results');
+    resultsArea.innerHTML = '';
+    noResults.classList.remove('visible');
+  }
+
+  // Search handler
+  const searchInput = document.getElementById('ingredient-search');
+  let searchTimeout;
+
+  searchInput.addEventListener('input', function() {
+    clearTimeout(searchTimeout);
+    const query = this.value.trim().toLowerCase();
+
+    if (query.length < 2) {
+      clearResults();
+      return;
+    }
+
+    searchTimeout = setTimeout(() => {
+      // Exact match first
+      if (searchIndex[query]) {
+        showResult(searchIndex[query]);
+        return;
+      }
+
+      // Partial match
+      const matches = Object.keys(searchIndex).filter(k => k.includes(query));
+      if (matches.length > 0) {
+        // Show best match (shortest key that contains query)
+        matches.sort((a, b) => a.length - b.length);
+        showResult(searchIndex[matches[0]]);
+      } else {
+        showNoResults();
+      }
+    }, 200);
+  });
+
+  // Build browse list
+  const listEl = document.getElementById('ingredients-list');
+  for (const [key, data] of Object.entries(INGREDIENTS)) {
+    const chip = document.createElement('div');
+    chip.className = 'ing-chip';
+    chip.innerHTML = `<span class="dot ${getDotClass(data.rating)}"></span>${data.name.split('(')[0].trim()}`;
+    chip.addEventListener('click', () => {
+      searchInput.value = data.name.split('(')[0].trim();
+      showResult(key);
+      searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    });
+    listEl.appendChild(chip);
+  }
+  </script>
+
+</body>
+</html>
