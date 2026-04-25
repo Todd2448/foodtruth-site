@@ -14,6 +14,82 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
+  <!-- ZXing barcode scanner -->
+  <script src="https://unpkg.com/@zxing/library@0.19.1/umd/index.min.js"></script>
+  <style>
+    .camera-btn {
+      width: 100%;
+      background: rgba(34,197,94,0.1);
+      border: 1.5px dashed rgba(34,197,94,0.4);
+      border-radius: 12px;
+      color: #22c55e;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 14px;
+      cursor: pointer;
+      margin-top: 12px;
+      font-family: 'Inter', sans-serif;
+      transition: background 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .camera-btn:hover { background: rgba(34,197,94,0.18); }
+    .camera-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .camera-wrap {
+      display: none;
+      margin-top: 16px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #000;
+      aspect-ratio: 4/3;
+    }
+    .camera-wrap video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .camera-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+    }
+    .camera-finder {
+      width: 70%;
+      height: 40%;
+      border: 2px solid #22c55e;
+      border-radius: 8px;
+      box-shadow: 0 0 0 9999px rgba(0,0,0,0.5);
+    }
+    .camera-hint-text {
+      margin-top: 12px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 600;
+      text-shadow: 0 1px 4px rgba(0,0,0,0.8);
+    }
+    .camera-stop-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.6);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 12px;
+      cursor: pointer;
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
   <style>
     .scan-hero {
       padding: 120px 0 40px;
@@ -333,7 +409,7 @@
     <div class="container">
       <div class="section-label">🔍 Live Scanner</div>
       <h1 class="scan-title">Scan Any Food Product</h1>
-      <p class="scan-sub">Enter the barcode from any food package.<br>We'll tell you exactly what's in it — and what other countries have already banned.</p>
+      <p class="scan-sub">Use your camera or type the barcode number from any food package.<br>Instant safety rating — works right at the grocery store.</p>
 
       <div class="scan-box">
         <div class="scan-input-row">
@@ -349,6 +425,21 @@
           <button class="scan-btn" id="scanBtn" onclick="doScan()">Scan →</button>
         </div>
         <p class="scan-hint">Find the barcode on the back of any food package (the number under the lines)</p>
+
+        <!-- Camera scan button -->
+        <button class="camera-btn" id="cameraBtn" onclick="startCamera()">
+          📷 Scan with Camera
+        </button>
+
+        <!-- Camera view -->
+        <div class="camera-wrap" id="cameraWrap">
+          <video id="cameraVideo" playsinline autoplay muted></video>
+          <div class="camera-overlay">
+            <div class="camera-finder"></div>
+            <div class="camera-hint-text">Point at barcode</div>
+          </div>
+          <button class="camera-stop-btn" onclick="stopCamera()">✕ Close</button>
+        </div>
         <div class="scan-examples">
           <span class="example-chip" onclick="tryExample('0044000032258')">Chips Ahoy</span>
           <span class="example-chip" onclick="tryExample('0028400090285')">Fritos</span>
@@ -536,6 +627,75 @@
 
     function sevIcon(sev) {
       return {critical:'☠️', high:'🔴', moderate:'🟡', low:'⚪'}[sev] || '❓';
+    }
+
+    // ============================================================
+    // CAMERA BARCODE SCANNING
+    // ============================================================
+    let codeReader = null;
+    let cameraActive = false;
+
+    async function startCamera() {
+      const cameraBtn = document.getElementById('cameraBtn');
+      const cameraWrap = document.getElementById('cameraWrap');
+      const video = document.getElementById('cameraVideo');
+
+      if (!window.ZXing) {
+        alert('Camera scanner not available. Please type the barcode number instead.');
+        return;
+      }
+
+      try {
+        cameraBtn.disabled = true;
+        cameraBtn.textContent = '📷 Starting camera...';
+        cameraWrap.style.display = 'block';
+        cameraActive = true;
+
+        codeReader = new ZXing.BrowserMultiFormatReader();
+        const devices = await codeReader.listVideoInputDevices();
+
+        // Prefer back camera on mobile
+        const backCam = devices.find(d => /back|rear|environment/i.test(d.label)) || devices[devices.length - 1];
+        const deviceId = backCam ? backCam.deviceId : undefined;
+
+        await codeReader.decodeFromVideoDevice(deviceId, 'cameraVideo', (result, err) => {
+          if (result && cameraActive) {
+            const barcode = result.getText().replace(/\D/g, '');
+            if (barcode && barcode.length >= 6) {
+              stopCamera();
+              input.value = barcode;
+              // Flash green
+              input.style.borderColor = '#22c55e';
+              setTimeout(() => { input.style.borderColor = ''; }, 800);
+              doScan();
+            }
+          }
+        });
+
+        cameraBtn.textContent = '📷 Camera active — point at barcode';
+
+      } catch (e) {
+        console.error('Camera error:', e);
+        stopCamera();
+        if (e.name === 'NotAllowedError') {
+          alert('Camera access denied. Please allow camera access and try again, or type the barcode manually.');
+        } else {
+          alert('Could not start camera. Please type the barcode number instead.');
+        }
+      }
+    }
+
+    function stopCamera() {
+      cameraActive = false;
+      if (codeReader) {
+        try { codeReader.reset(); } catch(e) {}
+        codeReader = null;
+      }
+      const cameraWrap = document.getElementById('cameraWrap');
+      const cameraBtn = document.getElementById('cameraBtn');
+      cameraWrap.style.display = 'none';
+      cameraBtn.disabled = false;
+      cameraBtn.innerHTML = '📷 Scan with Camera';
     }
   </script>
 
