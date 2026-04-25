@@ -257,6 +257,37 @@
     </div>
   </nav>
 
+  <!-- ===== DID YOU KNOW TICKER ===== -->
+  <div id="fact-ticker" style="background: linear-gradient(90deg, rgba(34,197,94,0.12), rgba(34,197,94,0.06)); border-bottom: 1px solid rgba(34,197,94,0.25); padding: 12px 0; overflow: hidden; position: relative; z-index: 50;">
+    <div class="container" style="display: flex; align-items: center; gap: 16px; max-width: 900px; margin: 0 auto;">
+      <div style="flex-shrink: 0; font-size: 12px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent-green); white-space: nowrap; padding-right: 16px; border-right: 1px solid rgba(34,197,94,0.3);">💡 Did You Know?</div>
+      <div id="fact-text" style="font-size: 14px; color: #d1d5db; line-height: 1.5; font-weight: 500; transition: opacity 0.5s ease;"></div>
+    </div>
+  </div>
+  <script>
+    (function() {
+      var facts = [
+        "Red 40 is banned in Denmark, Belgium, France, Germany, Switzerland, Sweden, and Austria — but still legal and common in US food.",
+        "The average American consumes 3–5 pounds of food additives per year from processed and packaged foods.",
+        "BHA is listed as a possible human carcinogen by the National Toxicology Program — and is still in many US breakfast cereals.",
+        "The EU has banned or restricted over 1,300 food chemicals. The US has banned fewer than 20.",
+        "Titanium dioxide — a white dye in candy and frosting — was banned by the EU in 2022 due to DNA damage concerns. Still FDA-approved in the US."
+      ];
+      var idx = 0;
+      var el = document.getElementById('fact-text');
+      function showFact() {
+        el.style.opacity = '0';
+        setTimeout(function() {
+          el.textContent = facts[idx];
+          el.style.opacity = '1';
+          idx = (idx + 1) % facts.length;
+        }, 500);
+      }
+      showFact();
+      setInterval(showFact, 5000);
+    })();
+  </script>
+
   <!-- ===== HERO ===== -->
   <section class="lookup-hero">
     <div class="container">
