@@ -274,7 +274,7 @@
           spellcheck="false"
         />
       </div>
-      <p class="lookup-hint">30+ ingredients in the database · More added regularly</p>
+      <p class="lookup-hint">50+ ingredients in the database · More added regularly</p>
     </div>
   </section>
 
@@ -629,6 +629,70 @@
       banned_in: [],
       description: "Artificial flavors are synthetic chemicals designed to mimic natural flavors. They're created in labs by flavor chemists using a combination of aroma compounds. Unlike 'natural flavors' (which can contain dozens of undisclosed compounds), artificial flavors are often simpler in composition but clearly synthetic. Individually, most FDA-approved flavor compounds are tested and considered safe. The concern is that complex artificial flavor mixtures create a sensory experience your brain recognizes as food but your metabolism doesn't — contributing to the 'hyperpalatable' quality of processed food that drives overconsumption.",
       what_to_do: "Treat the same as 'natural flavors' — it means something is being obscured or engineered. Not automatically dangerous, but signals heavy processing. Products relying on artificial flavors rather than real ingredients are worth scrutinizing for what else they're hiding."
+    },
+    "sodium phosphate": {
+      name: "Sodium Phosphate / Phosphates",
+      aliases: ["disodium phosphate", "trisodium phosphate", "sodium polyphosphate", "e339", "e340", "e341", "phosphoric acid", "e338"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Phosphates are used as acidity regulators, emulsifiers, and preservatives in processed cheese, canned meats, fast food chicken products, sodas (as phosphoric acid), and many other processed foods. Inorganic phosphates in food are absorbed at much higher rates than natural organic phosphates in whole foods. High phosphate intake is associated with accelerated aging markers, cardiovascular calcification, and kidney damage. Research has linked high dietary phosphate to increased all-cause mortality, particularly in people with kidney disease. The average American's phosphate intake has increased significantly as processed food consumption has risen.",
+      what_to_do: "Limit processed cheese, fast food, and sodas with phosphoric acid — these are the biggest sources. Kidney disease patients should be particularly cautious. Choose whole food sources of protein over processed meats where possible. Check ingredient lists for any ingredient containing 'phosphate.'"
+    },
+    "corn syrup": {
+      name: "Corn Syrup (Regular)",
+      aliases: ["light corn syrup", "dark corn syrup", "glucose syrup"],
+      rating: "yellow",
+      banned_in: [],
+      description: "Regular corn syrup (not high-fructose) is primarily glucose, converted from corn starch. It's used in candy, baked goods, ice cream, and condiments to prevent crystallization and add sweetness. Unlike HFCS, it doesn't have the fructose-specific metabolic concerns. However, it's still a refined added sugar with no nutritional value that contributes to overall sugar intake. It's often used in products alongside other added sugars, multiplying the total sugar load. Its presence signals an ultra-processed product.",
+      what_to_do: "Less concerning than HFCS, but still an added sugar that should be limited in overall diet. Check candy, syrups, baked goods, and ice cream. Count it toward total added sugar intake."
+    },
+    "red 3": {
+      name: "Red 3 (Erythrosine)",
+      aliases: ["erythrosine", "fd&c red no. 3", "fd&c red 3", "e127"],
+      rating: "red",
+      banned_in: ["EU (restricted)", "Australia", "Norway"],
+      description: "Red 3 is a cherry-pink synthetic dye used in maraschino cherries, candy, canned fruit, and popsicles. In 1990, the FDA banned Red 3 from cosmetics and externally applied drugs because it caused thyroid cancer in male rats. It remained legal in food for over 30 years on the argument that the rat doses were too high to be relevant. In January 2025, the FDA finally banned Red 3 from food and ingested drugs, giving manufacturers until January 2027 (food) and January 2028 (drugs) to reformulate. If you're reading a product with Red 3, you may still encounter it until brands update their formulas.",
+      what_to_do: "Avoid. The FDA has acknowledged the concern and issued a ban. Check maraschino cherries, cocktail cherries, candy, frosted cakes, and popsicles. During the reformulation period, products may still contain it. Look for alternatives colored with natural beet extract or cherry concentrate."
+    },
+    "tbhq food": {
+      name: "Carnauba Wax",
+      aliases: ["e903", "brazil wax"],
+      rating: "green",
+      banned_in: [],
+      description: "Carnauba wax is a natural wax derived from the leaves of the carnauba palm tree, native to Brazil. It's used as a coating on candy, gummies, pharmaceutical pills, and some fruits to give a shiny appearance and prevent moisture loss. It's also used in car wax and floor polish, which sounds alarming but is irrelevant to food safety — many compounds have both food and industrial uses. Carnauba wax is non-toxic, non-digestible, and has a very good safety record in food applications. The FDA considers it safe.",
+      what_to_do: "No concern needed. It's a natural wax with a good safety profile. If you see it on the ingredient list of candy or gummies, it's providing a shiny coating. Vegan-friendly. No action required."
+    },
+    "nitrous oxide": {
+      name: "Sodium Nitrite vs. Sodium Nitrate (Quick Reference)",
+      aliases: ["nitrite", "nitrate", "cured", "uncured"],
+      rating: "red",
+      banned_in: ["EU sets strict limits"],
+      description: "Sodium nitrite (E250) is used in processed meats as both a preservative and a color fixer — it gives hot dogs and bacon their pink color and prevents botulism. It converts to nitrosamines in the gut, which are potent carcinogens. The WHO classifies processed meat as Group 1 (definitely carcinogenic) largely because of this. Sodium nitrate (E251) is used in cured meats like salami and prosciutto and is metabolically similar. 'Uncured' labels typically use celery powder or juice, which contains naturally occurring nitrates that convert to the same compounds — so 'uncured' doesn't mean nitrite-free.",
+      what_to_do: "Limit processed meat consumption overall. If you eat it, choose truly uncured products without celery juice/powder if possible. Cooking at high heat (charring) increases nitrosamine formation — grill more gently. Adding Vitamin C-rich foods to a processed meat meal may reduce nitrosamine formation."
+    },
+    "acacia gum": {
+      name: "Acacia Gum (Gum Arabic)",
+      aliases: ["gum arabic", "e414", "acacia senegal"],
+      rating: "green",
+      banned_in: [],
+      description: "Acacia gum (also called gum arabic) is a natural food additive derived from the sap of Acacia trees. It's used as an emulsifier, thickener, and film former in candies, sodas, beer, and dietary supplements. It's a soluble dietary fiber with prebiotic properties and has been used in food for thousands of years. Research suggests it supports beneficial gut bacteria and may reduce cholesterol. The FDA considers it GRAS and it's approved as safe in nearly every country. One of the most naturally-sourced and well-studied food additives available.",
+      what_to_do: "Green light. No concern. Actually potentially beneficial as a prebiotic fiber. No action needed."
+    },
+    "vegetable glycerin": {
+      name: "Vegetable Glycerin (Glycerol)",
+      aliases: ["glycerol", "glycerin", "vegetable glycerol", "e422"],
+      rating: "green",
+      banned_in: [],
+      description: "Vegetable glycerin is a clear, odorless liquid derived from plant oils (usually palm, soy, or coconut). It's used as a humectant (moisture-retainer), sweetener, solvent, and thickener in baked goods, candy, chocolate, dried fruit, and supplements. It's also in e-cigarettes and many personal care products. In food, it has a mildly sweet taste but a lower glycemic impact than sugar because it's partially converted to glucose in the liver. It's well-tolerated by most people at food use levels, though very large amounts can cause gastrointestinal upset. Generally considered safe.",
+      what_to_do: "No concern at typical food levels. Often used as a sugar substitute in lower-glycemic products. Found in dried fruits, granola bars, and many sugar-free products. Not a reason to avoid a product."
+    },
+    "calcium carbonate": {
+      name: "Calcium Carbonate",
+      aliases: ["e170", "limestone", "chalk"],
+      rating: "green",
+      banned_in: [],
+      description: "Calcium carbonate is a naturally occurring mineral used in food as a calcium supplement, anti-caking agent, and acidity regulator. It's the same compound as chalk, limestone, and eggshells. In food, it's found in fortified dairy alternatives, some breads, antacids, and supplements. It's an excellent source of bioavailable calcium. At very high supplemental doses (several grams per day), excess calcium carbonate has been associated with kidney stones in some individuals, but at food use levels it's completely safe and often beneficial.",
+      what_to_do: "No concern. Often beneficial as a calcium source. Common in plant-based milks as a fortification. If you're taking calcium carbonate supplements plus eating heavily fortified foods, keep total calcium intake in check (stay under 2,500mg/day from all sources)."
     },
     "carob bean gum": {
       name: "Carob Bean Gum (Locust Bean Gum)",
