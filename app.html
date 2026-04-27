@@ -291,22 +291,29 @@
 
       <!-- App Store Badges (Coming Soon) -->
       <div class="store-badges">
-        <div class="store-badge">
+        <div class="store-badge" style="opacity: 0.85; cursor: default; background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.25);">
           <span class="store-badge-icon">🍎</span>
           <div class="store-badge-text">
-            <span class="store-badge-sub">Download on the</span>
+            <span class="store-badge-sub" style="color: #9ca3af;">Coming Soon to the</span>
             <span class="store-badge-name">App Store</span>
           </div>
         </div>
-        <div class="store-badge">
+        <div class="store-badge" style="opacity: 0.85; cursor: default; background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.25);">
           <span class="store-badge-icon">🤖</span>
           <div class="store-badge-text">
-            <span class="store-badge-sub">Get it on</span>
+            <span class="store-badge-sub" style="color: #9ca3af;">Coming Soon to</span>
             <span class="store-badge-name">Google Play</span>
           </div>
         </div>
       </div>
       <div><span class="coming-soon-pill">⏳ Coming Soon — Join the waitlist below</span></div>
+
+      <!-- TestFlight Beta -->
+      <div style="margin-top: 24px;">
+        <a href="#beta-signup" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(59,130,246,0.12); border: 1px solid rgba(59,130,246,0.3); border-radius: 100px; padding: 10px 24px; color: #60a5fa; font-size: 15px; font-weight: 700; text-decoration: none; transition: background 0.2s;">
+          🧪 Join the Beta on TestFlight →
+        </a>
+      </div>
     </div>
   </section>
 
@@ -440,6 +447,18 @@
           <p class="feature-desc">Core ingredient ratings work without internet. Shop confidently even in areas with spotty signal.</p>
         </div>
 
+        <div class="feature-card">
+          <span class="feature-icon">⌨️</span>
+          <div class="feature-title">Manual Barcode Entry</div>
+          <p class="feature-desc">Camera won't cooperate? Type the barcode number directly. Works just as fast — same instant results.</p>
+        </div>
+
+        <div class="feature-card">
+          <span class="feature-icon">📤</span>
+          <div class="feature-title">Share Your Scans</div>
+          <p class="feature-desc">Found something alarming? Share scan results with family and friends so they know what to avoid too.</p>
+        </div>
+
       </div>
     </div>
   </section>
@@ -493,8 +512,26 @@
     </div>
   </section>
 
+  <!-- ===== BETA SIGNUP ===== -->
+  <section id="beta-signup" class="app-signup-section" style="padding-top: 60px;">
+    <div class="container">
+      <div style="max-width: 640px; margin: 0 auto; text-align: center;">
+        <div style="background: rgba(59,130,246,0.08); border: 1px solid rgba(59,130,246,0.2); border-radius: 24px; padding: 48px 40px; margin-bottom: 48px;">
+          <span style="font-size: 48px; display: block; margin-bottom: 16px;">🧪</span>
+          <span class="section-label" style="color: #60a5fa;">Beta Program</span>
+          <h2 class="section-title" style="font-size: clamp(24px, 3.5vw, 36px); margin-bottom: 12px;">Download on TestFlight —<br /><span style="color: #60a5fa;">Join Our Beta</span></h2>
+          <div class="divider center"></div>
+          <p style="color: #9ca3af; font-size: 16px; line-height: 1.65; margin-bottom: 20px;">We're opening the FoodPeel app to beta testers on Apple TestFlight. Get the app before anyone else, help us squash bugs, and shape the features we build next.</p>
+          <div style="background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 20px 24px; display: inline-block;">
+            <p style="color: #d1d5db; font-size: 15px; font-weight: 600; margin: 0;">🔗 TestFlight link coming soon — sign up below to get it first</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ===== SIGNUP ===== -->
-  <section class="app-signup-section">
+  <section class="app-signup-section" style="padding-top: 0;">
     <div class="container">
       <div class="app-signup-box">
         <span class="section-label">Get Notified</span>
