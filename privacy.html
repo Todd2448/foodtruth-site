@@ -122,7 +122,7 @@
       <p class="section-sub">
         No dark patterns, no hidden data selling, no surprise marketing. Here's exactly what we collect and why.
       </p>
-      <p class="effective-date" style="margin-top: 16px;">Effective date: April 2026</p>
+      <p class="effective-date" style="margin-top: 16px;">Last updated: April 27, 2026</p>
     </div>
   </section>
 
@@ -131,15 +131,25 @@
     <div class="legal-body">
 
       <div class="legal-highlight">
-        <p>🔒 Short version: We collect your email to keep you updated about FoodPeel. We never sell your data. Ever. You can ask us to delete everything, anytime.</p>
+        <p>🔒 Short version: FoodPeel stores your scan history on your device only. We never sell your data. No account is required to use the app. You can ask us to delete everything, anytime.</p>
       </div>
 
-      <h2>What We Collect</h2>
-      <p>We only collect what we actually need to run FoodPeel:</p>
+      <h2>The FoodPeel App</h2>
+      <p>FoodPeel is designed with privacy as a core principle. Here's how the app handles your data:</p>
       <ul>
-        <li><strong>Email address</strong> — collected when you sign up for the waitlist or create an account. Used to send you launch updates and product news. That's it.</li>
-        <li><strong>Scan data</strong> — when you scan a product, we log which products were scanned to improve our database. This data is fully anonymized — it is never linked to your identity.</li>
-        <li><strong>Usage analytics</strong> — basic, anonymized data about how the app is used (e.g., which features are popular, crash reports). We use this to improve the product. No PII is collected or stored.</li>
+        <li><strong>No account required</strong> — You can use FoodPeel without creating an account, providing an email address, or signing in. The app works out of the box.</li>
+        <li><strong>Scan history is stored locally</strong> — Your scan history is saved on your device only. It is not uploaded to our servers or any third-party service. If you delete the app, your scan history is deleted with it.</li>
+        <li><strong>Camera access</strong> — FoodPeel uses your device camera <em>only</em> to scan barcodes. Images and video from the camera are processed on-device in real time and are <strong>never stored, recorded, uploaded, or transmitted</strong> anywhere. Camera access is used solely for barcode recognition.</li>
+        <li><strong>Network requests</strong> — When you scan a barcode, the app sends only the barcode number (a string of digits) to our API to look up product information. No personal data, device identifiers, or location data are included in these requests.</li>
+      </ul>
+
+      <div class="legal-divider"></div>
+
+      <h2>What We Collect (Website)</h2>
+      <p>On the FoodPeel website, we only collect what we actually need:</p>
+      <ul>
+        <li><strong>Email address</strong> — collected when you sign up for the waitlist or newsletter. Used to send you launch updates and product news. That's it.</li>
+        <li><strong>Usage analytics</strong> — basic, anonymized data about how the website is used (e.g., which pages are popular). No personally identifiable information is collected or stored.</li>
       </ul>
 
       <div class="legal-divider"></div>
@@ -148,8 +158,10 @@
       <ul>
         <li>Your name (unless you choose to provide it)</li>
         <li>Your location or GPS data</li>
+        <li>Your photos, camera roll, or any images from your device</li>
+        <li>Your contacts or data from other apps</li>
         <li>Your purchase history or financial information</li>
-        <li>Any data from your contacts, camera roll, or other apps</li>
+        <li>Device identifiers for tracking or advertising purposes</li>
       </ul>
 
       <div class="legal-divider"></div>
@@ -166,7 +178,10 @@
 
       <h2>How We Store Your Data</h2>
       <p>
-        Your data is stored securely using industry-standard encryption at rest and in transit. We use reputable third-party services (e.g., Formspree for form handling) that have their own privacy and security practices.
+        <strong>App data:</strong> Your scan history and preferences are stored locally on your device. We do not have access to this data.
+      </p>
+      <p>
+        <strong>Website data:</strong> Any data you provide through the website (e.g., email signup) is stored securely using industry-standard encryption at rest and in transit. We use reputable third-party services (e.g., Formspree for form handling) that have their own privacy and security practices.
       </p>
       <p>
         We do not store payment information ourselves — all payments are handled through Stripe, which is PCI-compliant.
@@ -198,6 +213,25 @@
       <h2>Children's Privacy</h2>
       <p>
         FoodPeel is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe we have inadvertently collected such information, please contact us at <a href="mailto:privacy@foodpeel.com" style="color: var(--accent-green);">privacy@foodpeel.com</a> and we will delete it immediately.
+      </p>
+
+      <div class="legal-divider"></div>
+
+      <h2>Third-Party Services</h2>
+      <p>FoodPeel uses the following third-party services:</p>
+      <ul>
+        <li><strong>Open Food Facts</strong> — open-source food product database used for barcode lookups. Only the barcode number is sent; no personal data.</li>
+        <li><strong>USDA FoodData Central</strong> — U.S. government food database used as a fallback for barcode lookups. Only the barcode number is sent.</li>
+        <li><strong>Formspree</strong> — used for website contact form handling.</li>
+        <li><strong>Stripe</strong> — used for payment processing (PCI-compliant). We never see or store your card details.</li>
+      </ul>
+      <p>We do not use any third-party advertising SDKs, tracking pixels, or analytics frameworks that collect personal information.</p>
+
+      <div class="legal-divider"></div>
+
+      <h2>California Privacy Rights (CCPA)</h2>
+      <p>
+        If you are a California resident, you have the right to know what personal information we collect, request its deletion, and opt out of its sale. Since we do not sell personal data, there is nothing to opt out of. For any requests, email <a href="mailto:privacy@foodpeel.com" style="color: var(--accent-green);">privacy@foodpeel.com</a>.
       </p>
 
       <div class="legal-divider"></div>
